@@ -2,6 +2,16 @@
 
 A static portfolio prototype. Pure HTML/CSS/JS — no build step.
 
+## Working with the AI (Zac's note to self)
+
+Treat GitHub like Dropbox for this project. Just talk to Claude / Codex in plain English — no git commands needed:
+
+- **"Save my changes online"** — pushes to GitHub.
+- **"Pull the latest changes"** — gets the newest version.
+- **On a new machine:** _"Set up my portfolio project from https://github.com/zacnairn3-dot/zac-and-casey-portfolio"_
+
+The AI handles all the git stuff.
+
 ## Run locally
 
 From this folder:
