@@ -176,20 +176,11 @@ const projects = [
 ];
 
 const cases = document.querySelector("#case-studies");
-const featureCard = document.querySelector("#feature-card");
-const featureClient = document.querySelector("#feature-client");
-const featureTitle = document.querySelector("#feature-title");
-const featureLine = document.querySelector("#feature-line");
-const featureLink = document.querySelector("#feature-link");
 const menuButton = document.querySelector(".menu-button");
 const nav = document.querySelector("#site-nav");
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
-}
-
-function imageStyle(url) {
-  return `--image: url("${url}")`;
 }
 
 function withAutoplay(src, autoplay) {
@@ -253,15 +244,6 @@ function renderMediaSequence(project) {
   return output.join("");
 }
 
-function setFeature(project) {
-  featureCard.style.cssText = imageStyle(project.image);
-  featureClient.textContent = project.client;
-  featureTitle.textContent = project.title;
-  featureLine.textContent = project.line;
-  featureLink.href = `#${project.id}`;
-  document.documentElement.style.setProperty("--red", project.color);
-}
-
 function renderCases() {
   const tilts = [-0.4, 0.3, -0.3, 0.4, -0.3, 0.3, -0.3, 0.4];
   cases.innerHTML = projects.map((project, index) => {
@@ -298,10 +280,9 @@ function wireInteractions() {
   document.querySelectorAll("[data-project-link]").forEach((link) => {
     link.addEventListener("mouseenter", () => {
       const project = projects.find((item) => item.id === link.dataset.projectLink);
-      if (project) setFeature(project);
+      if (project) document.documentElement.style.setProperty("--red", project.color);
     });
     link.addEventListener("mouseleave", () => {
-      setFeature(defaultProject);
       document.documentElement.style.setProperty("--red", defaultRed);
     });
   });
@@ -365,7 +346,6 @@ nav.addEventListener("click", (event) => {
 
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
-setFeature(projects[0]);
 wireInteractions();
 
 function scrollToHash(hash = window.location.hash) {
