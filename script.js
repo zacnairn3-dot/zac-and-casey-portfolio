@@ -141,6 +141,7 @@ const projects = [
   },
   {
     id: "young-lions",
+    hidden: true,
     client: "Young Lions",
     title: "Digital Brief",
     line: "We won the Global Young Lions Digital Competition in 2023. Good luck reading through all of it.",
@@ -247,35 +248,20 @@ function renderMediaSequence(project) {
   return output.join("");
 }
 
-function renderPolaroids() {
-  const sheet = document.querySelector(".contact-sheet");
-  if (!sheet) return;
-  const layout = [
-    { top: "2%",   left: "4%",  rot: -7,   drift: "a", z: 4 },
-    { top: "6%",   left: "30%", rot: 5,    drift: "b", z: 3 },
-    { top: "2%",   left: "60%", rot: -4,   drift: "c", z: 2 },
-    { top: "36%",  left: "14%", rot: 4,    drift: "d", z: 5 },
-    { top: "32%",  left: "42%", rot: -3,   drift: "e", z: 6 },
-    { top: "34%",  left: "68%", rot: 6,    drift: "a", z: 4 },
-    { top: "65%",  left: "8%",  rot: -5,   drift: "b", z: 3 },
-    { top: "62%",  left: "50%", rot: 3,    drift: "c", z: 5 },
-  ];
-  sheet.innerHTML = projects.map((project, index) => {
+function renderProjectGrid() {
+  const grid = document.querySelector("#project-grid");
+  if (!grid) return;
+  const tilts = [-1.4, 0.8, -0.6, 1.2, -1, 0.5, -0.9, 1.1];
+  grid.innerHTML = visibleProjects.map((project, index) => {
     const num = String(index + 1).padStart(2, "0");
-    const pos = layout[index] || { top: "20%", left: "20%", rot: 0, drift: "a", z: 1 };
-    const src = project.intro || project.thumb || project.image;
-    const isAnimated = !!project.intro;
+    const src = project.thumb || project.image;
     return `
-      <a class="polaroid${isAnimated ? "" : " polaroid--still"}"
-         href="#${project.id}"
-         style="top:${pos.top}; left:${pos.left}; --rest-rot:${pos.rot}deg; --drift-name: drift-${pos.drift}; z-index:${pos.z};">
-        <span class="polaroid-frame">
-          <img src="${src}" alt="${project.client} — ${project.title}" loading="${index < 3 ? "eager" : "lazy"}">
-        </span>
-        <span class="polaroid-caption">
-          <span class="polaroid-num">${num}</span>
-          <span class="polaroid-title">${project.client}</span>
-        </span>
+      <a class="project-card" href="#${project.id}" style='--image: url("${src}"); --tilt: ${tilts[index]}deg'>
+        <span class="project-chip">${num} / ${project.role}</span>
+        <div>
+          <h3>${project.client}</h3>
+          <p>${project.title}</p>
+        </div>
       </a>
     `;
   }).join("");
@@ -283,7 +269,7 @@ function renderPolaroids() {
 
 function renderCases() {
   const tilts = [-0.4, 0.3, -0.3, 0.4, -0.3, 0.3, -0.3, 0.4];
-  cases.innerHTML = projects.map((project, index) => {
+  cases.innerHTML = visibleProjects.map((project, index) => {
     const num = String(index + 1).padStart(2, "0");
     return `
       <article class="case" id="${project.id}" data-project="${project.id}" style="--red: ${project.color}; --tilt: ${tilts[index]}deg">
@@ -381,7 +367,8 @@ nav.addEventListener("click", (event) => {
   }
 });
 
-renderPolaroids();
+const visibleProjects = projects.filter((p) => !p.hidden);
+renderProjectGrid();
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
 wireInteractions();
