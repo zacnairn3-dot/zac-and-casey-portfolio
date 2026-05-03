@@ -264,26 +264,22 @@ main {
 
 .contact-sheet {
   position: relative;
-  min-height: min(46rem, 78vh);
   width: 100%;
-  display: grid;
-  place-items: center;
-  padding: clamp(1.5rem, 3vw, 3rem) 0;
+  height: clamp(46rem, 96vh, 64rem);
 }
 
 .polaroid {
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: clamp(14rem, 22vw, 22rem);
-  padding: 0.8rem 0.8rem 0.45rem;
+  width: clamp(10rem, 14vw, 15rem);
+  padding: 0.6rem 0.6rem 0.4rem;
   background: var(--cream);
-  border: 1px solid rgba(50, 29, 25, 0.12);
+  border: 1px solid rgba(50, 29, 25, 0.14);
   color: var(--ink);
-  box-shadow:
-    0.4rem 0.5rem 0 rgba(50, 29, 25, 0.04),
-    0 1.4rem 1.8rem -1.4rem rgba(50, 29, 25, 0.32);
-  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.25, 1), box-shadow 420ms ease, z-index 0s 200ms;
+  transform: rotate(var(--rest-rot, 0deg));
+  animation: var(--drift-name, drift-a) 9s ease-in-out infinite;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.25, 1), z-index 0s 200ms;
   text-decoration: none;
   cursor: pointer;
   will-change: transform;
@@ -339,41 +335,17 @@ main {
   color: rgba(50, 29, 25, 0.78);
 }
 
-.polaroid--1 {
-  top: 6%;
-  left: 8%;
-  transform: rotate(-7deg);
-  z-index: 2;
-  animation: drift-a 7.5s ease-in-out infinite;
-}
-
-.polaroid--2 {
-  top: 12%;
-  right: 14%;
-  transform: rotate(5deg);
-  z-index: 3;
-  animation: drift-b 8.5s ease-in-out infinite;
-  animation-delay: -2.5s;
-}
-
-.polaroid--3 {
-  bottom: 8%;
-  left: 38%;
-  transform: rotate(-2.5deg);
-  z-index: 1;
-  animation: drift-c 9s ease-in-out infinite;
-  animation-delay: -4s;
-}
+.polaroid:nth-child(odd) { animation-duration: 8.5s; }
+.polaroid:nth-child(3n) { animation-delay: -2s; }
+.polaroid:nth-child(3n + 1) { animation-delay: -4s; }
+.polaroid:nth-child(3n + 2) { animation-delay: -6s; }
 
 .polaroid:hover,
 .polaroid:focus-visible {
-  transform: rotate(0deg) translateY(-0.6rem) scale(1.04);
-  z-index: 5;
+  transform: rotate(calc(var(--rest-rot, 0deg) * 0.15)) translateY(-0.55rem) scale(1.04);
+  z-index: 12;
   outline: none;
   animation-play-state: paused;
-  box-shadow:
-    0.6rem 0.7rem 0 rgba(50, 29, 25, 0.05),
-    0 2.4rem 3rem -1.6rem rgba(50, 29, 25, 0.4);
   transition-delay: 0s;
 }
 
@@ -383,18 +355,28 @@ main {
 }
 
 @keyframes drift-a {
-  0%, 100% { transform: rotate(-7deg) translateY(0); }
-  50% { transform: rotate(-6.2deg) translateY(-0.4rem); }
+  0%, 100% { transform: rotate(var(--rest-rot)) translateY(0); }
+  50% { transform: rotate(calc(var(--rest-rot) + 1deg)) translateY(-0.35rem); }
 }
 
 @keyframes drift-b {
-  0%, 100% { transform: rotate(5deg) translateY(0); }
-  50% { transform: rotate(5.9deg) translateY(-0.4rem); }
+  0%, 100% { transform: rotate(var(--rest-rot)) translateY(0); }
+  50% { transform: rotate(calc(var(--rest-rot) - 0.8deg)) translateY(-0.4rem); }
 }
 
 @keyframes drift-c {
-  0%, 100% { transform: rotate(-2.5deg) translateY(0); }
-  50% { transform: rotate(-1.6deg) translateY(-0.35rem); }
+  0%, 100% { transform: rotate(var(--rest-rot)) translateY(0) translateX(0); }
+  50% { transform: rotate(calc(var(--rest-rot) + 0.6deg)) translateY(-0.3rem) translateX(0.2rem); }
+}
+
+@keyframes drift-d {
+  0%, 100% { transform: rotate(var(--rest-rot)) translateY(0) translateX(0); }
+  50% { transform: rotate(calc(var(--rest-rot) - 1.1deg)) translateY(-0.2rem) translateX(-0.2rem); }
+}
+
+@keyframes drift-e {
+  0%, 100% { transform: rotate(var(--rest-rot)) translateY(0); }
+  50% { transform: rotate(calc(var(--rest-rot) + 0.9deg)) translateY(-0.5rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
