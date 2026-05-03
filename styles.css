@@ -149,45 +149,66 @@ a:hover {
   inset: 4rem auto 0 0;
   z-index: 10;
   width: min(20rem, 26vw);
-  padding: 2.5rem 2rem;
+  padding: 2.5rem 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
   border-right: 1px dashed rgba(50, 29, 25, 0.18);
   background: rgba(245, 241, 235, 0.7);
   backdrop-filter: blur(14px);
+  overflow-y: auto;
+}
+
+.rail-block {
+  display: grid;
+  gap: 0.55rem;
 }
 
 .rail-label {
   margin: 0;
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.55rem;
   border-bottom: 1px dashed rgba(50, 29, 25, 0.28);
   color: rgba(50, 29, 25, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
 }
 
-.rail-foot a {
+.rail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.18rem;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  color: rgba(50, 29, 25, 0.72);
+}
+
+.rail-list--links a {
   color: var(--red);
+  transition: color 200ms ease;
+}
+
+.rail-foot {
+  margin-top: auto;
 }
 
 .project-nav {
-  display: grid;
-  gap: 0.32rem;
-  margin: 0;
-  padding: 1.2rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
   list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.22rem;
 }
 
 .project-nav a {
   display: inline-block;
-  color: rgba(50, 29, 25, 0.45);
-  font-size: clamp(1.4rem, 1.6vw, 1.85rem);
-  line-height: 1.05;
+  color: rgba(50, 29, 25, 0.55);
+  font-size: clamp(1.05rem, 1.2vw, 1.25rem);
+  line-height: 1.2;
   letter-spacing: -0.01em;
+  transition: color 200ms ease;
 }
 
 .project-nav a.is-current,
@@ -195,13 +216,6 @@ a:hover {
   color: var(--red);
 }
 
-.rail-foot {
-  margin-top: auto;
-  display: grid;
-  gap: 0.26rem;
-  font-size: 0.96rem;
-  line-height: 1.05;
-}
 
 main {
   margin-left: min(20rem, 26vw);
@@ -211,14 +225,15 @@ main {
 .hero {
   position: relative;
   min-height: calc(100vh - 4rem);
-  padding: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 5rem) 5rem;
+  padding: 2.5rem clamp(2rem, 5vw, 5rem) 5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 1.6rem;
 }
 
 .hero-cue {
-  margin-top: 2.6rem;
+  margin-top: auto;
   display: inline-flex;
   align-items: baseline;
   gap: 0.55rem;
@@ -265,13 +280,16 @@ main {
 
 .hero h1 a {
   color: var(--red);
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 0.04em;
-  transition: color 200ms ease;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
 }
 
 .hero h1 a:hover {
   color: var(--ink);
+  text-decoration-color: var(--ink);
 }
 
 .hero-aside {
@@ -280,7 +298,7 @@ main {
 }
 
 .kicker {
-  margin: 0 0 1.6rem;
+  margin: 0;
 }
 
 .project-grid {
