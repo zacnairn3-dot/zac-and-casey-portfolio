@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zac & Casey Prototype</title>
+    <meta name="description" content="A sharper prototype portfolio for Zac and Casey.">
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="paper-edge" aria-hidden="true"></div>
+
+    <header class="site-head">
+      <a class="mark" href="#top" aria-label="Zac and Casey home">
+        <span>Z</span><span>+</span><span>C</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <nav class="rail" id="site-nav" aria-label="Portfolio">
+      <a class="wordmark" href="#top" aria-label="Zac and Casey home">
+        <span>Zac</span>
+        <span>& Casey</span>
+      </a>
+      <p>
+        We're an Aussie creative team currently hiding out in New Zealand.
+        <a href="https://www.linkedin.com/in/zacnairn/">Zac</a> does the art.
+        <a href="https://www.linkedin.com/in/casey-clarke/">Casey</a> does the copy.
+        Sometimes vice versa.
+      </p>
+      <ol class="project-nav">
+        <li><a href="#x-long-white" data-project-link="x-long-white">X by Long White</a></li>
+        <li><a href="#wwf" data-project-link="wwf">WWF</a></li>
+        <li><a href="#realestate" data-project-link="realestate">Realestate.co.nz</a></li>
+        <li><a href="#no-ugly" data-project-link="no-ugly">No Ugly Gut</a></li>
+        <li><a href="#post-it" data-project-link="post-it">Post-it</a></li>
+        <li><a href="#bulla" data-project-link="bulla">Bulla Family Dairy</a></li>
+        <li><a href="#two-truths" data-project-link="two-truths">TwoTruths</a></li>
+        <li><a href="#young-lions" data-project-link="young-lions">Young Lions</a></li>
+      </ol>
+      <div class="rail-foot">
+        <a href="#awards">Awards</a>
+        <a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a>
+        <a href="mailto:caseyclarke@outlook.com.au">caseyclarke@outlook.com.au</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">Creative team / art direction / copy / misc. trouble</p>
+          <h1 id="hero-title">Work that behaves more like a good rumour than a portfolio page.</h1>
+        </div>
+        <div class="hero-stage" aria-label="Featured project preview">
+          <div class="stamp">NZ-ish, AU-made</div>
+          <article class="feature-card is-active" id="feature-card">
+            <div>
+              <p class="eyebrow" id="feature-client">X by Long White</p>
+              <h2 id="feature-title">The Sugar Liquidation Sale!</h2>
+              <p id="feature-line">A deranged mid-90s sugar sale for the sugar left out of X.</p>
+            </div>
+            <a class="feature-link" id="feature-link" href="#x-long-white">Open case</a>
+          </article>
+          <div class="floating-tile tile-one" aria-hidden="true">case study</div>
+          <div class="floating-tile tile-two" aria-hidden="true">OOH</div>
+          <div class="floating-tile tile-three" aria-hidden="true">film</div>
+        </div>
+      </section>
+
+      <section class="case-studies" id="case-studies" aria-label="Case studies"></section>
+
+      <section class="awards" id="awards">
+        <div class="section-label">
+          <span>Awards</span>
+          <span>receipt drawer</span>
+        </div>
+        <h2>A list of awards that nobody really cares about anymore, except when the room goes quiet.</h2>
+        <div class="award-grid">
+          <span>AWARD Awards 2025</span>
+          <span>Axis Awards 2025</span>
+          <span>B&T Best Digital Campaign</span>
+          <span>Cannes Young Lions Global Gold</span>
+          <span>Cannes Young Lions Australia Gold</span>
+          <span>Caples</span>
+          <span>Ad Stars</span>
+          <span>Bestads</span>
+        </div>
+      </section>
+
+      <footer class="contact">
+        <p>Get in touch before one of us overthinks the footer.</p>
+        <a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a>
+        <a href="mailto:caseyclarke@outlook.com.au">caseyclarke@outlook.com.au</a>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
