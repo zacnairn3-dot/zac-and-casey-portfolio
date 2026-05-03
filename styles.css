@@ -222,18 +222,18 @@ main {
 
 .contact-sheet {
   position: relative;
-  min-height: min(38rem, 70vh);
+  min-height: min(40rem, 76vh);
   display: grid;
   place-items: center;
-  padding: clamp(1.5rem, 3vw, 3rem) 1rem;
+  padding: clamp(1.5rem, 3vw, 3rem) 0;
 }
 
 .polaroid {
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: clamp(11rem, 17vw, 17rem);
-  padding: 0.7rem 0.7rem 0.4rem;
+  width: clamp(12rem, 19vw, 19rem);
+  padding: 0.75rem 0.75rem 0.4rem;
   background: var(--cream);
   border: 1px solid rgba(50, 29, 25, 0.12);
   color: var(--ink);
@@ -297,26 +297,26 @@ main {
 }
 
 .polaroid--1 {
-  top: 4%;
-  left: 8%;
-  transform: rotate(-5.5deg);
+  top: 0;
+  left: 4%;
+  transform: rotate(-6deg);
   z-index: 2;
   animation: drift-a 7.5s ease-in-out infinite;
 }
 
 .polaroid--2 {
-  top: 22%;
-  right: 6%;
-  transform: rotate(4.5deg);
+  top: 24%;
+  right: 4%;
+  transform: rotate(5deg);
   z-index: 3;
   animation: drift-b 8.5s ease-in-out infinite;
   animation-delay: -2.5s;
 }
 
 .polaroid--3 {
-  bottom: 4%;
-  left: 28%;
-  transform: rotate(-2.5deg);
+  bottom: 0;
+  left: 30%;
+  transform: rotate(-2deg);
   z-index: 1;
   animation: drift-c 9s ease-in-out infinite;
   animation-delay: -4s;
@@ -340,18 +340,18 @@ main {
 }
 
 @keyframes drift-a {
-  0%, 100% { transform: rotate(-5.5deg) translateY(0); }
-  50% { transform: rotate(-4.8deg) translateY(-0.35rem); }
+  0%, 100% { transform: rotate(-6deg) translateY(0); }
+  50% { transform: rotate(-5.2deg) translateY(-0.35rem); }
 }
 
 @keyframes drift-b {
-  0%, 100% { transform: rotate(4.5deg) translateY(0); }
-  50% { transform: rotate(5.4deg) translateY(-0.4rem); }
+  0%, 100% { transform: rotate(5deg) translateY(0); }
+  50% { transform: rotate(5.9deg) translateY(-0.4rem); }
 }
 
 @keyframes drift-c {
-  0%, 100% { transform: rotate(-2.5deg) translateY(0); }
-  50% { transform: rotate(-1.7deg) translateY(-0.3rem); }
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(-1.2deg) translateY(-0.3rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
