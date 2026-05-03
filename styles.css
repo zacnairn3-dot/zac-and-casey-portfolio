@@ -210,8 +210,11 @@ main {
 
 .hero {
   position: relative;
-  padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 5vw, 5rem) 5rem;
-  display: block;
+  min-height: calc(100vh - 4rem);
+  padding: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 5rem) 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-cue {
@@ -250,13 +253,34 @@ main {
 }
 
 .hero h1 {
-  max-width: 12ch;
+  max-width: 22ch;
   margin: 0;
-  font-size: clamp(3.2rem, 7.4vw, 8.4rem);
-  line-height: 0.96;
+  font-size: clamp(2.6rem, 5.6vw, 6.4rem);
+  line-height: 1.04;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  color: var(--ink);
+}
+
+.hero h1 a {
+  color: var(--red);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.04em;
+  transition: color 200ms ease;
+}
+
+.hero h1 a:hover {
+  color: var(--ink);
+}
+
+.hero-aside {
+  display: inline;
+  color: rgba(50, 29, 25, 0.5);
+}
+
+.kicker {
+  margin: 0 0 1.6rem;
 }
 
 .project-grid {
