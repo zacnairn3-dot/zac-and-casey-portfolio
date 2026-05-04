@@ -6,10 +6,11 @@ const projects = [
     line: "We turned the sugar Long White left out of its new RTD, X, into a full-blown mid-90s-style sugar sale, starring our deranged salesman Gary.",
     role: "Launch platform / film / social",
     result: "Gary lived. Sugar moved.",
-    color: "#f82919",
+    color: "#d92d21",
     image: "assets/xlong-1.jpg",
     thumb: "assets/xlong-2.jpg",
     intro: "assets/intro-x-long-white.gif",
+    awards: ["Bestads Best Interactive Winner", "Bestads Web Film / Experiential recognition", "Bestads Outdoor recognition", "AXIS Finalist"],
     media: [
       { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: true },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-01.jpg" },
@@ -29,10 +30,11 @@ const projects = [
     line: "We corralled 40,000+ New Zealander's to give a corrupt Ocean and Fisheries Minister the fish finger.",
     role: "Activation / protest / earned",
     result: "40,000+ public fingers.",
-    color: "#5e7f68",
+    color: "#2f7655",
     image: "assets/wwf-1.jpg",
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
+    awards: ["AWARD Bronze", "2x AWARD Finalist", "Cairns Crocodiles Bronze", "4x AXIS Bronze", "AXIS Finalist", "Bestads Interactive recognition"],
     media: [
       { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign image", src: "assets/wwf-seq-01.jpg" },
@@ -51,9 +53,10 @@ const projects = [
     line: "We highlighted all the reasons renters move to show that finding your next rental starts at Realestate.co.nz.",
     role: "OOH / print / platform",
     result: "Renting made painfully legible.",
-    color: "#6d8faa",
+    color: "#2f6f9f",
     image: "assets/realestate-1.jpg",
     thumb: "assets/realestate-2.jpg",
+    awards: ["Bestads Best Outdoor Winner", "Bestads Outdoor recognition"],
     media: [
       { type: "image", title: "Outdoor", src: "assets/realestate-seq-01.jpg" },
       { type: "image", title: "Outdoor", src: "assets/realestate-seq-02.jpg" },
@@ -70,10 +73,11 @@ const projects = [
     line: "We turned probiotic bacteria into works of art for a wellness drink brand called No Ugly Gut.",
     role: "Design / OOH / film",
     result: "Bacteria, but gallery-lit.",
-    color: "#a64339",
+    color: "#94352f",
     image: "assets/nougly-1.jpg",
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
+    awards: ["AXIS Silver", "2x AXIS Bronze", "Cairns Crocodiles Finalist", "Bestads Best Outdoor Winner"],
     media: [
       { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
@@ -91,9 +95,10 @@ const projects = [
     line: "We made the humble note relevant when the world was glued to screens in COVID lockdown.",
     role: "Film / digital / participation",
     result: "A tiny square got roomy again.",
-    color: "#d3a711",
+    color: "#9b7800",
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
+    awards: ["AWARD Bronze", "3x AWARD Finalist", "3x MAD STARS Finalist", "Bestads Best Interactive Winner"],
     media: [
       { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: true },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
@@ -109,9 +114,10 @@ const projects = [
     line: "We created a lovable, cringeworthy cottage cheese influencer for Australia's most beloved dairy company. She blew up on the TikToks, as my grandpa would say. People loved her so much that she made it on The Gruen Transfer, B&T awarded it Best Digital Campaign and she even picked up some real earned media for selling too much cottage cheese.",
     role: "Character / social / earned",
     result: "TikTok heat and Gruen airtime.",
-    color: "#87a5bd",
+    color: "#4f86a6",
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
+    awards: ["B&T Best Digital Campaign Winner", "AWARD Finalist", "Mumbrella Finalist", "The Work Featured"],
     media: [
       { type: "image", title: "Meet Margaret board", src: "assets/bulla-seq-01.png" },
       { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: true },
@@ -128,7 +134,7 @@ const projects = [
     line: "We launched an indie wine maker by preaching universal truths to the public.",
     role: "Brand / OOH / copy",
     result: "Wine with a backbone.",
-    color: "#7b5e72",
+    color: "#70425f",
     image: "assets/twotruths-1.jpg",
     thumb: "assets/twotruths-2.jpg",
     media: [
@@ -147,9 +153,10 @@ const projects = [
     line: "We won the Global Young Lions Digital Competition in 2023. Good luck reading through all of it.",
     role: "Digital / pitch / competition",
     result: "Global Gold.",
-    color: "#d76535",
+    color: "#b65a2d",
     image: "assets/young-1.jpg",
     thumb: "assets/young-2.jpg",
+    awards: ["Cannes Young Lions Global Gold", "Cannes Young Lions Australia Gold"],
     media: [
       { type: "image", title: "Round 1", src: "assets/young-seq-01.jpg" },
       { type: "image", title: "Round 1", src: "assets/young-seq-02.jpg" },
@@ -180,28 +187,99 @@ const projects = [
 ];
 
 const cases = document.querySelector("#case-studies");
-const menuButton = document.querySelector(".menu-button");
 const nav = document.querySelector("#site-nav");
+let hashRestoreTimers = [];
+let hashRestoreActive = false;
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
+
+const imageSizes = {
+  "assets/bulla-seq-01.png": [1800, 1267],
+  "assets/nougly-seq-01.jpg": [1800, 1013],
+  "assets/nougly-seq-02.jpg": [1800, 1273],
+  "assets/nougly-seq-03.jpg": [1800, 1273],
+  "assets/nougly-seq-04.jpg": [1800, 2622],
+  "assets/nougly-seq-05.jpg": [1800, 1273],
+  "assets/postit-seq-01.jpg": [1800, 1273],
+  "assets/postit-seq-02.jpg": [1800, 1273],
+  "assets/postit-seq-03.jpg": [1800, 1273],
+  "assets/realestate-seq-01.jpg": [1800, 1273],
+  "assets/realestate-seq-02.jpg": [1800, 1273],
+  "assets/realestate-seq-03.jpg": [1800, 1273],
+  "assets/realestate-seq-04.jpg": [1800, 1273],
+  "assets/realestate-seq-05.jpg": [1800, 1273],
+  "assets/twotruths-seq-01.jpg": [1800, 1162],
+  "assets/twotruths-seq-02.jpg": [1800, 1200],
+  "assets/twotruths-seq-03.jpg": [1800, 1200],
+  "assets/twotruths-seq-04.jpg": [1800, 1202],
+  "assets/wwf-seq-01.jpg": [1800, 1200],
+  "assets/wwf-seq-02.png": [1800, 1015],
+  "assets/wwf-seq-03.png": [1800, 1008],
+  "assets/wwf-seq-04.jpg": [1800, 1200],
+  "assets/wwf-seq-05.jpg": [1800, 1200],
+  "assets/wwf-seq-06.jpg": [1800, 1286],
+  "assets/xlong-seq-01.jpg": [1800, 1172],
+  "assets/xlong-seq-02.jpg": [1800, 1172],
+  "assets/xlong-seq-03.jpg": [1800, 1200],
+  "assets/xlong-seq-04.gif": [1920, 1250],
+  "assets/xlong-seq-05.jpg": [1800, 1172],
+  "assets/young-seq-01.jpg": [1800, 1013],
+  "assets/young-seq-02.jpg": [1800, 1013],
+  "assets/young-seq-03.jpg": [1800, 1013],
+  "assets/young-seq-04.jpg": [1800, 1013],
+  "assets/young-seq-05.jpg": [1800, 1013],
+  "assets/young-seq-06.jpg": [1800, 1013],
+  "assets/young-seq-07.jpg": [1800, 1013],
+  "assets/young-seq-08.jpg": [1800, 1013],
+  "assets/young-seq-09.jpg": [1800, 1013],
+  "assets/young-seq-10.jpg": [1800, 1013],
+  "assets/young-seq-11.jpg": [1800, 1013],
+  "assets/young-seq-12.jpg": [1800, 1013],
+  "assets/young-seq-13.jpg": [1800, 1013],
+  "assets/young-seq-14.jpg": [1800, 1013],
+  "assets/young-seq-15.jpg": [1800, 1013],
+  "assets/young-seq-16.jpg": [1800, 1013],
+  "assets/young-seq-17.jpg": [1800, 1013],
+  "assets/young-seq-18.jpg": [1800, 1013],
+  "assets/young-seq-19.jpg": [1800, 1013],
+  "assets/young-seq-20.jpg": [1800, 1013],
+  "assets/young-seq-21.jpg": [1800, 1013],
+  "assets/young-seq-22.jpg": [1800, 1013],
+  "assets/young-seq-23.jpg": [1800, 1276]
+};
 
 function withAutoplay(src, autoplay) {
   if (!autoplay) return src;
   const separator = src.includes("?") ? "&" : "?";
   if (src.includes("youtube")) {
     const id = src.split("/").pop();
-    return `${src}${separator}autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&controls=0`;
+    return `${src}${separator}autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`;
   }
-  return `${src}${separator}autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1`;
+  return `${src}${separator}autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&controls=0&background=1&dnt=1`;
+}
+
+function soundToggleLabel(item) {
+  return `Toggle sound for ${item.title}`;
+}
+
+function shouldRenderSoundToggle(item) {
+  return !(item.type === "embed" && item.src.includes("youtube"));
+}
+
+function renderSoundToggle(item) {
+  if (!shouldRenderSoundToggle(item)) return "";
+  return `<button class="sound-toggle" type="button" aria-label="${soundToggleLabel(item)}" aria-pressed="false">Unmute</button>`;
 }
 
 function renderMediaItem(item, project) {
   if (item.type === "image") {
+    const size = imageSizes[item.src];
+    const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
     return `
       <figure class="image-frame media-unit">
-        <img src="${item.src}" alt="${project.client} - ${item.title}" loading="lazy">
+        <img src="${item.src}" alt="${project.client} - ${item.title}" loading="lazy" decoding="async"${dimensions}>
       </figure>
     `;
   }
@@ -209,8 +287,8 @@ function renderMediaItem(item, project) {
   if (item.type === "video") {
     return `
       <figure class="video-frame video-frame--landscape media-unit">
-        <video src="${item.src}" autoplay muted loop playsinline controls></video>
-        <figcaption>${item.title}</figcaption>
+        <video src="${item.src}" autoplay muted loop playsinline></video>
+        ${renderSoundToggle(item)}
       </figure>
     `;
   }
@@ -218,7 +296,7 @@ function renderMediaItem(item, project) {
   return `
     <figure class="video-frame video-frame--${item.orientation || "landscape"} media-unit">
       <iframe src="${withAutoplay(item.src, item.autoplay)}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      <figcaption>${item.title}</figcaption>
+      ${renderSoundToggle(item)}
     </figure>
   `;
 }
@@ -248,6 +326,18 @@ function renderMediaSequence(project) {
   return output.join("");
 }
 
+function renderAwards(project) {
+  if (!project.awards?.length) return "";
+  return `
+    <section class="case-awards" aria-label="${project.client} awards">
+      <span>Award wins</span>
+      <ul>
+        ${project.awards.map((award) => `<li>${award}</li>`).join("")}
+      </ul>
+    </section>
+  `;
+}
+
 function renderProjectGrid() {
   const grid = document.querySelector("#project-grid");
   if (!grid) return;
@@ -268,7 +358,7 @@ function renderProjectGrid() {
 }
 
 function renderCases() {
-  const tilts = [-0.4, 0.3, -0.3, 0.4, -0.3, 0.3, -0.3, 0.4];
+  const tilts = [-0.4, 0.3, -0.3, 0, -0.3, 0.3, -0.3, 0.4];
   cases.innerHTML = visibleProjects.map((project, index) => {
     const num = String(index + 1).padStart(2, "0");
     return `
@@ -281,10 +371,11 @@ function renderCases() {
           <div class="case-head">
             <h2><span class="case-eyebrow">${project.client}</span>${project.title}</h2>
             <aside class="case-note">
-              <span>${project.result}</span>
+              <span>Overview</span>
               <p>${project.line}</p>
             </aside>
           </div>
+          ${renderAwards(project)}
         </header>
         <div class="case-media">
           <div class="media-sequence">
@@ -294,6 +385,36 @@ function renderCases() {
       </article>
     `;
   }).join("");
+}
+
+function wireSoundToggles() {
+  document.querySelectorAll(".sound-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const frame = button.closest(".video-frame");
+      const enableSound = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(enableSound));
+      button.textContent = enableSound ? "Mute" : "Unmute";
+
+      const video = frame?.querySelector("video");
+      if (video) {
+        video.muted = !enableSound;
+        video.volume = enableSound ? 1 : 0;
+        if (enableSound) video.play().catch(() => {});
+        return;
+      }
+
+      const iframe = frame?.querySelector("iframe");
+      if (!iframe?.contentWindow) return;
+      const source = iframe.getAttribute("src") || "";
+      if (source.includes("youtube")) {
+        const command = enableSound ? "unMute" : "mute";
+        iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: command, args: [] }), "*");
+        return;
+      }
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "setMuted", value: !enableSound }), "*");
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "setVolume", value: enableSound ? 1 : 0 }), "*");
+    });
+  });
 }
 
 function wireInteractions() {
@@ -310,37 +431,56 @@ function wireInteractions() {
     });
   });
 
-  const setActiveProject = (id) => {
+  const setActiveSection = (id) => {
     const project = projects.find((item) => item.id === id);
     document.querySelectorAll("[data-project-link]").forEach((link) => {
       link.classList.toggle("is-current", link.dataset.projectLink === id);
     });
+    document.querySelectorAll("[data-section-link]").forEach((link) => {
+      link.classList.toggle("is-current", link.dataset.sectionLink === id);
+    });
     if (project) {
       document.documentElement.style.setProperty("--red", project.color);
+    } else if (id === "awards") {
+      document.documentElement.style.setProperty("--red", defaultRed);
     } else {
       document.documentElement.style.setProperty("--red", defaultRed);
     }
   };
 
-  const visibilityState = new Map();
-  const railObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      visibilityState.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-    });
+  const trackedSections = Array.from(document.querySelectorAll(".case, #awards"));
+  let activeTicking = false;
+  const updateActiveFromScroll = () => {
+    const marker = window.innerHeight * 0.68;
+    let activeId = null;
+    let closestTop = Number.NEGATIVE_INFINITY;
 
-    let bestId = null;
-    let bestRatio = 0;
-    visibilityState.forEach((ratio, id) => {
-      if (ratio > bestRatio) {
-        bestRatio = ratio;
-        bestId = id;
+    trackedSections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= marker && rect.bottom > 80 && rect.top > closestTop) {
+        closestTop = rect.top;
+        activeId = section.id;
       }
     });
 
-    setActiveProject(bestRatio > 0 ? bestId : null);
-  }, { threshold: [0, 0.1, 0.3, 0.5, 0.7, 0.9] });
+    if (!activeId) {
+      const firstVisible = trackedSections.find((section) => section.getBoundingClientRect().bottom > 80);
+      activeId = firstVisible ? firstVisible.id : null;
+    }
 
-  document.querySelectorAll(".case").forEach((section) => railObserver.observe(section));
+    setActiveSection(activeId);
+    activeTicking = false;
+  };
+
+  const queueActiveUpdate = () => {
+    if (activeTicking) return;
+    activeTicking = true;
+    window.requestAnimationFrame(updateActiveFromScroll);
+  };
+
+  window.addEventListener("scroll", queueActiveUpdate, { passive: true });
+  window.addEventListener("resize", queueActiveUpdate);
+  updateActiveFromScroll();
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -354,33 +494,54 @@ function wireInteractions() {
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 }
 
-menuButton.addEventListener("click", () => {
-  const isOpen = document.body.classList.toggle("nav-open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-});
-
-nav.addEventListener("click", (event) => {
-  const link = event.target.closest("a");
-  if (link) {
-    document.body.classList.remove("nav-open");
-    menuButton.setAttribute("aria-expanded", "false");
-  }
-});
-
 const visibleProjects = projects.filter((p) => !p.hidden);
 renderProjectGrid();
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
+wireSoundToggles();
 wireInteractions();
 
 function scrollToHash(hash = window.location.hash) {
   if (!hash || hash.length < 2) return;
   const el = document.getElementById(hash.slice(1));
-  if (el) el.scrollIntoView({ block: "start", inline: "nearest" });
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.pageYOffset;
+  window.scrollTo({ top, left: 0, behavior: "auto" });
+}
+
+function scheduleHashRestore(hash = window.location.hash) {
+  hashRestoreTimers.forEach((timer) => window.clearTimeout(timer));
+  hashRestoreTimers = [];
+  if (!hash || hash.length < 2) return;
+  hashRestoreActive = true;
+
+  [0, 120, 360, 900, 1800].forEach((delay) => {
+    hashRestoreTimers.push(window.setTimeout(() => scrollToHash(hash), delay));
+  });
+  hashRestoreTimers.push(window.setTimeout(() => {
+    hashRestoreActive = false;
+  }, 2100));
+}
+
+function cancelHashRestore() {
+  if (!hashRestoreActive) return;
+  hashRestoreTimers.forEach((timer) => window.clearTimeout(timer));
+  hashRestoreTimers = [];
+  hashRestoreActive = false;
 }
 
 if (window.location.hash) {
-  requestAnimationFrame(() => scrollToHash());
+  requestAnimationFrame(() => scheduleHashRestore());
 }
 
-window.addEventListener("hashchange", () => scrollToHash());
+window.addEventListener("hashchange", () => scheduleHashRestore());
+window.addEventListener("load", () => {
+  if (window.location.hash) scheduleHashRestore();
+});
+window.addEventListener("wheel", cancelHashRestore, { passive: true });
+window.addEventListener("touchstart", cancelHashRestore, { passive: true });
+window.addEventListener("keydown", (event) => {
+  if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) {
+    cancelHashRestore();
+  }
+});

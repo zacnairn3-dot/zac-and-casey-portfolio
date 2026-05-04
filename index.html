@@ -10,24 +10,17 @@
         history.scrollRestoration = "manual";
       }
     </script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=comments-8">
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
     <div class="paper-edge" aria-hidden="true"></div>
 
-    <header class="site-head" role="banner">
-      <a class="mark" href="#top" aria-label="Zac and Casey home">
-        <span>Zac</span><span class="mark-amp">+</span><span>Casey</span>
-      </a>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span></span><span></span>
-      </button>
-    </header>
-
     <nav class="rail" id="site-nav" aria-label="Portfolio">
+      <a class="rail-top-link" href="#top" aria-label="Back to top">Back to top</a>
+
       <div class="rail-block">
-        <p class="rail-label">Index</p>
+        <p class="rail-label">The actual work</p>
         <ol class="project-nav">
           <li><a href="#x-long-white" data-project-link="x-long-white">X by Long White</a></li>
           <li><a href="#wwf" data-project-link="wwf">WWF</a></li>
@@ -40,21 +33,14 @@
       </div>
 
       <div class="rail-block">
-        <p class="rail-label">Awards</p>
-        <ul class="rail-list">
-          <li>AWARD Awards 2025</li>
-          <li>Axis Awards 2025</li>
-          <li>B&amp;T Best Digital Campaign</li>
-          <li>Cannes Young Lions Global Gold</li>
-          <li>Cannes Young Lions Australia Gold</li>
-          <li>Caples</li>
-          <li>Ad Stars</li>
-          <li>Bestads</li>
+        <p class="rail-label">Shiny nonsense</p>
+        <ul class="rail-list rail-list--links">
+          <li><a href="#awards" data-section-link="awards">Awards</a></li>
         </ul>
       </div>
 
       <div class="rail-block rail-foot">
-        <p class="rail-label">Contact</p>
+        <p class="rail-label">Pester us</p>
         <ul class="rail-list rail-list--links">
           <li><a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a></li>
           <li><a href="mailto:caseyclarke@outlook.com.au">caseyclarke@outlook.com.au</a></li>
@@ -64,13 +50,27 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <p class="kicker">Creative team — art direction, copy, misc. trouble</p>
-        <h1 id="hero-title">
-          We're an Aussie creative team currently hiding out in New&nbsp;Zealand.
-          <a href="https://www.linkedin.com/in/zacnairn/">Zac</a> does the art.
-          <a href="https://www.linkedin.com/in/casey-clarke/">Casey</a> does the copy.
-          <span class="hero-aside">Sometimes vice versa.</span>
-        </h1>
+        <div class="hero-copy">
+          <p class="kicker">Creative team — art direction, copy, misc. trouble</p>
+          <h1 id="hero-title">
+            We're an Aussie creative team currently hiding out in New&nbsp;Zealand.
+            <a href="https://www.linkedin.com/in/zacnairn/">Zac</a> does the art.
+            <a href="https://www.linkedin.com/in/casey-clarke/">Casey</a> does the copy.
+            <span class="hero-aside">Sometimes vice versa.</span>
+          </h1>
+        </div>
+        <figure class="hero-stage" aria-label="Zac and Casey at Cannes">
+          <span>Cannes / Young Lions</span>
+          <img src="assets/cannes-stage.gif" alt="Zac and Casey going up on stage in Cannes">
+        </figure>
+        <span class="hero-dog-wrap hero-dog-wrap--lola" aria-label="Lola">
+          <img class="hero-dog" src="assets/dog-lola.png" alt="">
+          <span>Lola</span>
+        </span>
+        <span class="hero-dog-wrap hero-dog-wrap--neal" aria-label="Neal">
+          <img class="hero-dog" src="assets/dog-neal.png" alt="">
+          <span>Neal</span>
+        </span>
         <div class="hero-cue" aria-hidden="true">
           <span>Scroll for the work</span>
           <span class="hero-cue-arrow">↓</span>
@@ -79,6 +79,104 @@
 
       <section class="case-studies" id="case-studies" aria-label="Case studies"></section>
 
+      <section class="awards" id="awards" aria-labelledby="awards-title">
+        <div class="awards-head">
+          <p class="kicker">Recognition</p>
+          <h2 id="awards-title">Award show receipts.</h2>
+        </div>
+
+        <div class="award-board">
+          <article class="award-card">
+            <h3>Cannes Young Lions</h3>
+            <ul>
+              <li><strong>Global Gold</strong><span>Digital 2023 — Little Learners League</span></li>
+              <li><strong>Australian National Gold</strong><span>Digital 2023 — Australia</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>Spikes Asia</h3>
+            <ul>
+              <li><strong>Silver Spike</strong><span>Brand Experience &amp; Activation — Hard Rated Homecoming</span></li>
+              <li><strong>Shortlist</strong><span>Retail Promotions &amp; Competitions — Hard Rated Homecoming</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>B&amp;T Awards</h3>
+            <ul>
+              <li><strong>Winner</strong><span>Best Digital Campaign — Bulla Margaret</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>AWARD Awards</h3>
+            <ul>
+              <li><strong>Bronze</strong><span>PR &amp; Promotion — WWF The Finger</span></li>
+              <li><strong>Bronze</strong><span>Best Use of Social Media — Post-it</span></li>
+              <li><strong>Finalist</strong><span>WWF, Post-it and Bulla</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card award-card--wide">
+            <h3>AXIS Awards</h3>
+            <ul>
+              <li><strong>Silver</strong><span>Radio &amp; Audio Campaigns — Black Heart Rum, The Shanty for Missing Chums</span></li>
+              <li><strong>Silver</strong><span>Art Direction / OOH — No Ugly Gut Fizz</span></li>
+              <li><strong>Bronze</strong><span>Radio &amp; Audio Over 30 Seconds — Black Heart Rum, The Shanty for Missing Chums</span></li>
+              <li><strong>Bronze</strong><span>Direct Campaign — Hard Rated Homecoming</span></li>
+              <li><strong>Bronze</strong><span>Social — Hard Rated Homecoming</span></li>
+              <li><strong>Bronze</strong><span>No Ugly Gut Galaxy</span></li>
+              <li><strong>Bronze</strong><span>No Ugly Gut Sunny Side Up</span></li>
+              <li><strong>Bronze</strong><span>WWF The Finger — 4x charity categories</span></li>
+              <li><strong>Finalists</strong><span>11x across Asahi, WWF and No Ugly work</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>Cairns Crocodiles</h3>
+            <ul>
+              <li><strong>Bronze</strong><span>Changing the World Campaign — WWF The Finger</span></li>
+              <li><strong>Finalist</strong><span>Beauty &amp; Wellness Campaign — No Ugly Gut</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>MAD STARS</h3>
+            <ul>
+              <li><strong>3x Finalist</strong><span>Post-it A Little Space to Think</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <h3>Mumbrella</h3>
+            <ul>
+              <li><strong>Finalists</strong><span>2026 finalist recognition</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card award-card--wide">
+            <h3>Bestads</h3>
+            <ul>
+              <li><strong>Best Radio Winner</strong><span>Black Heart Rum</span></li>
+              <li><strong>Best Interactive Winner</strong><span>X by Long White</span></li>
+              <li><strong>Best Interactive Winner</strong><span>Post-it</span></li>
+              <li><strong>Best Print Winner</strong><span>Hard Rated Official Apology</span></li>
+              <li><strong>Best Outdoor Winner</strong><span>No Ugly Gut</span></li>
+              <li><strong>Best Outdoor Winner</strong><span>realestate.co.nz Flatmates</span></li>
+            </ul>
+          </article>
+
+          <article class="award-card award-card--wide">
+            <h3>Archive / Features</h3>
+            <ul>
+              <li><strong>The Work</strong><span>Bulla Margaret</span></li>
+              <li><strong>The Work</strong><span>Yellowtail Matchmonking</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <footer class="contact">
         <p>Get in touch before one of us overthinks the footer.</p>
         <a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a>
@@ -86,6 +184,6 @@
       </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=comments-8"></script>
   </body>
 </html>
