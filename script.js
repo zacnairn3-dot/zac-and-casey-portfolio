@@ -10,9 +10,10 @@ const projects = [
     image: "assets/xlong-1.jpg",
     thumb: "assets/xlong-2.jpg",
     intro: "assets/intro-x-long-white.gif",
-    awards: ["Bestads Best Interactive Winner", "Bestads Web Film / Experiential recognition", "Bestads Outdoor recognition", "AXIS Finalist"],
+    note: "Sugar sale",
+    awards: ["Bestads Best Interactive Winner"],
     media: [
-      { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: true },
+      { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: false, manual: true, poster: "assets/xlong-1.jpg" },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-01.jpg" },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-02.jpg" },
       { type: "image", title: "OOH", src: "assets/xlong-seq-03.jpg" },
@@ -34,7 +35,8 @@ const projects = [
     image: "assets/wwf-1.jpg",
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
-    awards: ["AWARD Bronze", "2x AWARD Finalist", "Cairns Crocodiles Bronze", "4x AXIS Bronze", "AXIS Finalist", "Bestads Interactive recognition"],
+    note: "Public pressure",
+    awards: ["AWARD Bronze", "Cairns Crocodiles Bronze", "4x AXIS Bronze", "Bestads Best Interactive Winner"],
     media: [
       { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign image", src: "assets/wwf-seq-01.jpg" },
@@ -56,7 +58,8 @@ const projects = [
     color: "#2f6f9f",
     image: "assets/realestate-1.jpg",
     thumb: "assets/realestate-2.jpg",
-    awards: ["Bestads Best Outdoor Winner", "Bestads Outdoor recognition"],
+    note: "Rental reasons",
+    awards: ["Bestads Best Outdoor Winner"],
     media: [
       { type: "image", title: "Outdoor", src: "assets/realestate-seq-01.jpg" },
       { type: "image", title: "Outdoor", src: "assets/realestate-seq-02.jpg" },
@@ -77,7 +80,8 @@ const projects = [
     image: "assets/nougly-1.jpg",
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
-    awards: ["AXIS Silver", "2x AXIS Bronze", "Cairns Crocodiles Finalist", "Bestads Best Outdoor Winner"],
+    note: "Bacteria art",
+    awards: ["AXIS Silver", "2x AXIS Bronze", "Bestads Best Outdoor Winner"],
     media: [
       { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
@@ -98,7 +102,8 @@ const projects = [
     color: "#9b7800",
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
-    awards: ["AWARD Bronze", "3x AWARD Finalist", "3x MAD STARS Finalist", "Bestads Best Interactive Winner"],
+    note: "Screen relief",
+    awards: ["AWARD Bronze", "Bestads Best Interactive Winner"],
     media: [
       { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: true },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
@@ -117,7 +122,8 @@ const projects = [
     color: "#4f86a6",
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
-    awards: ["B&T Best Digital Campaign Winner", "AWARD Finalist", "Mumbrella Finalist", "The Work Featured"],
+    note: "Cottage chief",
+    awards: ["B&T Best Digital Campaign Winner"],
     media: [
       { type: "image", title: "Meet Margaret board", src: "assets/bulla-seq-01.png" },
       { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: true },
@@ -137,6 +143,7 @@ const projects = [
     color: "#70425f",
     image: "assets/twotruths-1.jpg",
     thumb: "assets/twotruths-2.jpg",
+    note: "Plain truths",
     media: [
       { type: "image", title: "Billboard", src: "assets/twotruths-seq-01.jpg" },
       { type: "image", title: "Poster", src: "assets/twotruths-seq-02.jpg" },
@@ -156,6 +163,7 @@ const projects = [
     color: "#b65a2d",
     image: "assets/young-1.jpg",
     thumb: "assets/young-2.jpg",
+    note: "Global gold",
     awards: ["Cannes Young Lions Global Gold", "Cannes Young Lions Australia Gold"],
     media: [
       { type: "image", title: "Round 1", src: "assets/young-seq-01.jpg" },
@@ -251,8 +259,13 @@ const imageSizes = {
 };
 
 function withAutoplay(src, autoplay) {
-  if (!autoplay) return src;
   const separator = src.includes("?") ? "&" : "?";
+  if (!autoplay) {
+    if (src.includes("youtube")) {
+      return `${src}${separator}autoplay=0&mute=1&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`;
+    }
+    return `${src}${separator}autoplay=0&muted=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+  }
   if (src.includes("youtube")) {
     const id = src.split("/").pop();
     return `${src}${separator}autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`;
@@ -273,6 +286,16 @@ function renderSoundToggle(item) {
   return `<button class="sound-toggle" type="button" aria-label="${soundToggleLabel(item)}" aria-pressed="false">Unmute</button>`;
 }
 
+function renderTimeline(item) {
+  const label = item.manual ? "Waiting to play" : "Timeline";
+  return `<span class="video-timeline" aria-label="${label}"><i></i></span>`;
+}
+
+function renderPlayButton(item) {
+  if (!item.manual) return "";
+  return `<button class="video-play" type="button" aria-label="Play ${item.title}"><span>Play</span></button>`;
+}
+
 function renderMediaItem(item, project) {
   if (item.type === "image") {
     const size = imageSizes[item.src];
@@ -289,14 +312,17 @@ function renderMediaItem(item, project) {
       <figure class="video-frame video-frame--landscape media-unit">
         <video src="${item.src}" autoplay muted loop playsinline></video>
         ${renderSoundToggle(item)}
+        ${renderTimeline(item)}
       </figure>
     `;
   }
 
   return `
-    <figure class="video-frame video-frame--${item.orientation || "landscape"} media-unit">
+    <figure class="video-frame video-frame--${item.orientation || "landscape"}${item.manual ? " video-frame--manual" : ""} media-unit"${item.poster ? ` style='--poster: url("${item.poster}")'` : ""}>
       <iframe src="${withAutoplay(item.src, item.autoplay)}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      ${renderPlayButton(item)}
       ${renderSoundToggle(item)}
+      ${renderTimeline(item)}
     </figure>
   `;
 }
@@ -330,7 +356,7 @@ function renderAwards(project) {
   if (!project.awards?.length) return "";
   return `
     <section class="case-awards" aria-label="${project.client} awards">
-      <span>Award wins</span>
+      <span>Wins</span>
       <ul>
         ${project.awards.map((award) => `<li>${award}</li>`).join("")}
       </ul>
@@ -371,7 +397,7 @@ function renderCases() {
           <div class="case-head">
             <h2><span class="case-eyebrow">${project.client}</span>${project.title}</h2>
             <aside class="case-note">
-              <span>Overview</span>
+              <span>${project.note || "Overview"}</span>
               <p>${project.line}</p>
             </aside>
           </div>
@@ -413,6 +439,31 @@ function wireSoundToggles() {
       }
       iframe.contentWindow.postMessage(JSON.stringify({ method: "setMuted", value: !enableSound }), "*");
       iframe.contentWindow.postMessage(JSON.stringify({ method: "setVolume", value: enableSound ? 1 : 0 }), "*");
+    });
+  });
+}
+
+function wireVideoControls() {
+  document.querySelectorAll(".video-frame").forEach((frame) => {
+    const video = frame.querySelector("video");
+    if (!video) return;
+    const setProgress = () => {
+      if (!video.duration) return;
+      const progress = Math.max(0, Math.min(100, (video.currentTime / video.duration) * 100));
+      frame.style.setProperty("--video-progress", `${progress}%`);
+    };
+    video.addEventListener("timeupdate", setProgress);
+    video.addEventListener("loadedmetadata", setProgress);
+  });
+
+  document.querySelectorAll(".video-play").forEach((button) => {
+    button.addEventListener("click", () => {
+      const frame = button.closest(".video-frame");
+      const iframe = frame?.querySelector("iframe");
+      if (!iframe?.contentWindow) return;
+      frame.classList.add("is-playing");
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
+      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
     });
   });
 }
@@ -492,6 +543,12 @@ function wireInteractions() {
   }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
 
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+  const railToggle = document.querySelector(".rail-toggle");
+  railToggle?.addEventListener("click", () => {
+    const collapsed = document.body.classList.toggle("rail-collapsed");
+    railToggle.setAttribute("aria-expanded", String(!collapsed));
+  });
 }
 
 const visibleProjects = projects.filter((p) => !p.hidden);
@@ -499,6 +556,7 @@ renderProjectGrid();
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
 wireSoundToggles();
+wireVideoControls();
 wireInteractions();
 
 function scrollToHash(hash = window.location.hash) {

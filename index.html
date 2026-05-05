@@ -10,41 +10,50 @@
         history.scrollRestoration = "manual";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=comments-8">
+    <link rel="stylesheet" href="styles.css?v=comments-9">
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
     <div class="paper-edge" aria-hidden="true"></div>
 
     <nav class="rail" id="site-nav" aria-label="Portfolio">
-      <a class="rail-top-link" href="#top">Who are Zac and Casey?</a>
+      <button class="rail-toggle" type="button" aria-expanded="true" aria-controls="rail-content">
+        <span>Index</span>
+      </button>
 
-      <div class="rail-block">
-        <p class="rail-label">THE WORK</p>
-        <ol class="project-nav">
-          <li><a href="#x-long-white" data-project-link="x-long-white">X by Long White</a></li>
-          <li><a href="#wwf" data-project-link="wwf">WWF</a></li>
-          <li><a href="#realestate" data-project-link="realestate">Realestate.co.nz</a></li>
-          <li><a href="#no-ugly" data-project-link="no-ugly">No Ugly Gut</a></li>
-          <li><a href="#post-it" data-project-link="post-it">Post-it</a></li>
-          <li><a href="#bulla" data-project-link="bulla">Bulla Family Dairy</a></li>
-          <li><a href="#two-truths" data-project-link="two-truths">TwoTruths</a></li>
-        </ol>
-      </div>
+      <div class="rail-content" id="rail-content">
+        <a class="rail-top-link" href="#top">
+          <span>Who are</span>
+          <strong>Zac + Casey?</strong>
+        </a>
 
-      <div class="rail-block">
-        <p class="rail-label">Shiny Nonsense</p>
-        <ul class="rail-list rail-list--links">
-          <li><a href="#awards" data-section-link="awards">Shiny Nonsense</a></li>
-        </ul>
-      </div>
+        <div class="rail-block">
+          <p class="rail-label">THE WORK</p>
+          <ol class="project-nav">
+            <li><a href="#x-long-white" data-project-link="x-long-white">X by Long White</a></li>
+            <li><a href="#wwf" data-project-link="wwf">WWF</a></li>
+            <li><a href="#realestate" data-project-link="realestate">Realestate.co.nz</a></li>
+            <li><a href="#no-ugly" data-project-link="no-ugly">No Ugly Gut</a></li>
+            <li><a href="#post-it" data-project-link="post-it">Post-it</a></li>
+            <li><a href="#bulla" data-project-link="bulla">Bulla Family Dairy</a></li>
+            <li><a href="#two-truths" data-project-link="two-truths">TwoTruths</a></li>
+          </ol>
+        </div>
 
-      <div class="rail-block rail-foot">
-        <p class="rail-label">Pester us</p>
-        <ul class="rail-list rail-list--links">
-          <li><a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a></li>
-          <li><a href="mailto:caseyclarke@outlook.com.au">caseyclarke@outlook.com.au</a></li>
-        </ul>
+        <div class="rail-block">
+          <p class="rail-label">THE RECEIPTS</p>
+          <ul class="rail-list rail-list--links">
+            <li><a href="#awards" data-section-link="awards">Award show receipts</a></li>
+          </ul>
+        </div>
+
+        <div class="rail-block rail-foot">
+          <p class="rail-label">Pester us</p>
+          <ul class="rail-list rail-list--links">
+            <li><a href="mailto:zacnairn3@gmail.com">zacnairn3@gmail.com</a></li>
+            <li><a href="mailto:caseyclarke@outlook.com.au">caseyclarke@outlook.com.au</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -167,13 +176,6 @@
             </ul>
           </article>
 
-          <article class="award-card award-card--wide">
-            <h3>Archive / Features</h3>
-            <ul>
-              <li><strong>The Work</strong><span>Bulla Margaret</span></li>
-              <li><strong>The Work</strong><span>Yellowtail Matchmonking</span></li>
-            </ul>
-          </article>
         </div>
       </section>
 
@@ -184,6 +186,6 @@
       </footer>
     </main>
 
-    <script src="script.js?v=comments-8"></script>
+    <script src="script.js?v=comments-9"></script>
   </body>
 </html>
