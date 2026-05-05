@@ -91,10 +91,10 @@ a:hover {
   align-items: center;
   gap: 0.45rem;
   color: var(--ink);
-  font-size: 0.68rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.35rem);
   font-weight: 760;
   line-height: 1;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.015em;
   text-transform: uppercase;
 }
 
@@ -237,7 +237,7 @@ main {
   margin: 0;
   padding: 0.65rem;
   display: block;
-  border: 1px solid rgba(50, 29, 25, 0.18);
+  border: 0;
   border-radius: var(--box-radius);
   background:
     repeating-linear-gradient(0deg, rgba(50, 29, 25, 0.025) 0 1px, transparent 1px 7px),
@@ -248,7 +248,7 @@ main {
 
 .hero-stage span {
   position: absolute;
-  top: 0.72rem;
+  top: -2rem;
   left: 0.72rem;
   z-index: 2;
   width: max-content;
@@ -283,10 +283,10 @@ main {
 .hero-dog-wrap {
   position: absolute;
   z-index: 4;
-  width: clamp(4.4rem, 8vw, 8.8rem);
+  width: clamp(5.6rem, 10vw, 11.2rem);
   pointer-events: auto;
-  mix-blend-mode: multiply;
-  opacity: 0.92;
+  mix-blend-mode: normal;
+  opacity: 1;
 }
 
 .hero-dog-wrap img {
@@ -299,7 +299,7 @@ main {
 .hero-dog-wrap span {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 0.28rem);
+  bottom: calc(100% + 0.12rem);
   padding: 0.3rem 0.45rem 0.28rem;
   border: 1px solid color-mix(in srgb, var(--red) 58%, rgba(50, 29, 25, 0.18));
   border-radius: var(--box-radius);
@@ -323,23 +323,27 @@ main {
 .hero-dog-wrap--lola {
   left: clamp(1rem, 4vw, 5rem);
   bottom: 20%;
-  animation: dog-float-a 7.5s ease-in-out infinite alternate;
+  animation: dog-float-a 6.4s ease-in-out infinite alternate;
 }
 
 .hero-dog-wrap--neal {
   right: clamp(1rem, 4vw, 5rem);
   top: 18%;
-  animation: dog-float-b 8.4s ease-in-out infinite alternate;
+  animation: dog-float-b 7s ease-in-out infinite alternate;
+}
+
+.hero-dog-wrap--neal span {
+  bottom: calc(100% - 0.08rem);
 }
 
 @keyframes dog-float-a {
-  from { transform: translate3d(-0.5rem, 1rem, 0) rotate(-11deg); }
-  to { transform: translate3d(4rem, -3.1rem, 0) rotate(10deg); }
+  from { transform: translate3d(-1rem, 1.4rem, 0) rotate(-13deg); }
+  to { transform: translate3d(5.6rem, -4.2rem, 0) rotate(12deg); }
 }
 
 @keyframes dog-float-b {
-  from { transform: translate3d(0.8rem, -0.4rem, 0) rotate(9deg); }
-  to { transform: translate3d(-4.2rem, 3rem, 0) rotate(-7deg); }
+  from { transform: translate3d(1.4rem, -0.8rem, 0) rotate(11deg); }
+  to { transform: translate3d(-5.8rem, 4.1rem, 0) rotate(-9deg); }
 }
 
 @keyframes stage-drift {
@@ -563,7 +567,7 @@ main {
 }
 
 .case-opener::before {
-  content: "";
+  content: none;
   position: absolute;
   top: -0.65rem;
   left: clamp(1.2rem, 5vw, 5rem);
@@ -577,7 +581,7 @@ main {
 }
 
 .case-opener::after {
-  content: "";
+  content: none;
   position: absolute;
   right: 1.2rem;
   bottom: -0.65rem;
@@ -822,7 +826,7 @@ main {
 
 .case-note > span {
   display: inline-block;
-  width: max-content;
+  width: fit-content;
   max-width: 100%;
   padding: 0.45rem 0.6rem;
   border: 1px solid currentColor;
