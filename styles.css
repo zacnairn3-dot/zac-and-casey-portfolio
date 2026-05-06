@@ -73,7 +73,7 @@ a:hover {
   inset: 0 auto 0 0;
   z-index: 10;
   width: min(20rem, 26vw);
-  padding: 1.45rem 1.75rem 1.5rem;
+  padding: 2rem 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
   border-right: 1px dashed rgba(50, 29, 25, 0.18);
@@ -84,35 +84,38 @@ a:hover {
 }
 
 .rail-toggle {
-  width: fit-content;
-  margin: 0 0 1.25rem;
-  padding: 0.42rem 0.54rem 0.38rem;
+  position: fixed;
+  left: 0.85rem;
+  top: 50%;
+  z-index: 12;
+  width: 2.5rem;
+  min-height: 6rem;
+  margin: 0;
+  padding: 0.7rem 0.42rem;
+  display: grid;
+  place-items: center;
   border: 1px solid rgba(50, 29, 25, 0.18);
   border-radius: var(--box-radius);
   background: rgba(255, 250, 240, 0.54);
   color: var(--ink);
   font: 760 0.68rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateY(-50%);
   transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .rail-toggle::before {
-  content: "";
-  display: inline-block;
-  width: 0.46rem;
-  height: 0.46rem;
-  margin-right: 0.45rem;
-  border-top: 1px solid currentColor;
-  border-left: 1px solid currentColor;
-  transform: rotate(45deg) translateY(0.08rem);
-  transition: transform 160ms ease;
+  content: none;
 }
 
 .rail-toggle:hover {
   color: var(--red);
   border-color: color-mix(in srgb, var(--red) 38%, rgba(50, 29, 25, 0.18));
+  transform: translateY(-50%) translateX(1px);
 }
 
 .rail-content {
@@ -134,15 +137,15 @@ body.rail-collapsed .rail {
 }
 
 body.rail-collapsed .rail-toggle::before {
-  transform: rotate(135deg) translateY(-0.08rem);
+  content: none;
 }
 
 body.rail-collapsed .rail-toggle span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
 }
 
 body.rail-collapsed .rail-content {
@@ -160,13 +163,12 @@ body.rail-collapsed main {
   width: fit-content;
   max-width: 100%;
   padding: 0.2rem 0 0.45rem;
-  display: grid;
-  gap: 0.08rem;
+  display: block;
   color: var(--ink);
-  font-size: clamp(0.78rem, 0.9vw, 0.94rem);
+  font-size: clamp(1.12rem, 1.45vw, 1.45rem);
   font-weight: 760;
-  line-height: 0.94;
-  letter-spacing: 0.04em;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -174,16 +176,12 @@ body.rail-collapsed main {
   content: none;
 }
 
-.rail-top-link strong {
-  display: block;
-  font-size: clamp(1.18rem, 1.6vw, 1.58rem);
-  font-weight: 760;
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
 .rail-top-link:hover {
   color: var(--red);
+}
+
+.rail-block--single {
+  margin-top: 0.35rem;
 }
 
 .rail-block {
@@ -286,7 +284,7 @@ main {
 
 .hero-copy {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: min(78rem, 100%);
 }
 
@@ -305,10 +303,10 @@ main {
 
 .hero-stage {
   position: absolute;
-  right: clamp(0.6rem, 1.8vw, 2.2rem);
-  bottom: clamp(0.7rem, 1.8vh, 1.45rem);
-  z-index: 3;
-  width: min(30rem, 37vw);
+  right: clamp(-1rem, 1vw, 1.4rem);
+  bottom: clamp(1.2rem, 5vh, 4rem);
+  z-index: 1;
+  width: min(44rem, 46vw);
   margin: 0;
   padding: 0.65rem;
   display: block;
@@ -316,9 +314,10 @@ main {
   border-radius: var(--box-radius);
   background:
     repeating-linear-gradient(0deg, rgba(50, 29, 25, 0.025) 0 1px, transparent 1px 7px),
-    rgba(255, 250, 240, 0.72);
+    rgba(255, 250, 240, 0.5);
   transform: rotate(-1.4deg);
   animation: stage-drift 9s ease-in-out infinite alternate;
+  opacity: 0.86;
 }
 
 .hero-stage span {
@@ -353,6 +352,7 @@ main {
   width: 100%;
   display: block;
   border-radius: calc(var(--box-radius) * 0.8);
+  filter: saturate(0.92) contrast(0.96);
 }
 
 .hero-dog-wrap {
@@ -831,14 +831,16 @@ main {
   bottom: 0.72rem;
   z-index: 3;
   height: 0.22rem;
+  padding: 0;
   border: 1px solid rgba(255, 250, 240, 0.82);
   border-radius: 999px;
   background: rgba(50, 29, 25, 0.22);
   opacity: 0;
   overflow: hidden;
-  pointer-events: none;
+  cursor: pointer;
   transform: translateY(0.25rem);
   transition: opacity 180ms ease, transform 180ms ease;
+  appearance: none;
 }
 
 .video-timeline i {
@@ -850,31 +852,17 @@ main {
   transform-origin: left center;
 }
 
-.video-frame:not(.video-frame--manual) iframe ~ .video-timeline i {
-  width: 38%;
-  animation: timeline-drift 7s linear infinite;
-}
-
-.video-frame--manual .video-timeline i {
-  width: 0;
-  animation: none;
-}
-
-.video-frame--manual.is-playing .video-timeline i {
-  width: 34%;
-  animation: timeline-drift 8s linear infinite;
-}
-
 .video-frame:hover .video-timeline,
 .video-frame:focus-within .video-timeline {
   opacity: 1;
   transform: translateY(0);
 }
 
-@keyframes timeline-drift {
-  0% { transform: translateX(-100%) scaleX(0.8); }
-  45% { transform: translateX(55%) scaleX(1.7); }
-  100% { transform: translateX(275%) scaleX(0.9); }
+.video-timeline:hover,
+.video-timeline:focus-visible {
+  opacity: 1;
+  outline: none;
+  background: rgba(50, 29, 25, 0.34);
 }
 
 .video-play {
@@ -1063,33 +1051,28 @@ main {
 
 .case-awards {
   display: grid;
-  grid-template-columns: minmax(5.6rem, 0.18fr) minmax(0, 1fr);
-  gap: 0.8rem;
-  align-items: start;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.95rem;
+  align-items: center;
   margin-top: 1.35rem;
-  padding: 0.9rem 0.95rem;
-  border: 1px dashed color-mix(in srgb, var(--red) 30%, transparent);
+  padding: 0.82rem 0.95rem;
+  border: 1px dashed color-mix(in srgb, var(--red) 26%, transparent);
   border-radius: var(--box-radius);
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--red) 7%, transparent) 0 1px, transparent 1px),
-    rgba(255, 250, 240, 0.3);
-  background-size: 2.4rem auto, auto;
+  background: rgba(255, 250, 240, 0.38);
   color: var(--red);
 }
 
 .case-awards > span {
-  padding: 0.42rem 0.52rem 0.38rem;
-  border: 1px solid color-mix(in srgb, var(--red) 38%, transparent);
-  border-radius: var(--box-radius);
-  color: color-mix(in srgb, var(--red) 74%, var(--ink));
-  background: rgba(255, 250, 240, 0.42);
+  padding-right: 0.9rem;
+  border-right: 1px solid color-mix(in srgb, var(--red) 26%, transparent);
+  color: color-mix(in srgb, var(--red) 58%, var(--ink));
   font-size: 0.7rem;
   font-weight: 760;
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  opacity: 0.76;
+  opacity: 0.84;
 }
 
 .case-awards ul {
@@ -1103,9 +1086,9 @@ main {
 
 .case-awards li {
   padding: 0.42rem 0.58rem 0.38rem;
-  border: 1px solid color-mix(in srgb, var(--red) 42%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red) 34%, transparent);
   border-radius: var(--box-radius);
-  background: rgba(255, 250, 240, 0.56);
+  background: rgba(255, 250, 240, 0.62);
   font-size: 0.9rem;
   line-height: 1.15;
   font-weight: 520;

@@ -11,7 +11,7 @@ const projects = [
     thumb: "assets/xlong-2.jpg",
     intro: "assets/intro-x-long-white.gif",
     note: "Sugar sale",
-    awards: ["Bestads Best Interactive Winner"],
+    awards: ["Bestads Best Interactive Winner", "Mumbrella 2026 Shortlist"],
     media: [
       { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: false, manual: true, poster: "assets/xlong-1.jpg" },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-01.jpg" },
@@ -36,7 +36,7 @@ const projects = [
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
     note: "Public pressure",
-    awards: ["AWARD Bronze", "Cairns Crocodiles Bronze", "4x AXIS Bronze", "Bestads Best Interactive Winner"],
+    awards: ["AWARD 2026 Bronze"],
     media: [
       { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign image", src: "assets/wwf-seq-01.jpg" },
@@ -81,7 +81,7 @@ const projects = [
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
     note: "Bacteria art",
-    awards: ["AXIS Silver", "2x AXIS Bronze", "Bestads Best Outdoor Winner"],
+    awards: ["2x AXIS 2025 Winner", "Bestads Best Outdoor Winner"],
     media: [
       { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
@@ -103,7 +103,7 @@ const projects = [
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
     note: "Screen relief",
-    awards: ["AWARD Bronze", "Bestads Best Interactive Winner"],
+    awards: ["AWARD Bronze", "2x AWARD Finalist", "Immortal Awards ANZ Finalist", "MAD STARS 3x Finalist", "Bestads Best Interactive Winner"],
     media: [
       { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: true },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
@@ -123,7 +123,7 @@ const projects = [
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
     note: "Cottage chief",
-    awards: ["B&T Best Digital Campaign Winner"],
+    awards: ["B&T Best Digital Campaign Winner", "B&T Bravery Finalist", "AWARD Finalist"],
     media: [
       { type: "image", title: "Meet Margaret board", src: "assets/bulla-seq-01.png" },
       { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: true },
@@ -288,7 +288,7 @@ function renderSoundToggle(item) {
 
 function renderTimeline(item) {
   const label = item.manual ? "Waiting to play" : "Timeline";
-  return `<span class="video-timeline" aria-label="${label}"><i></i></span>`;
+  return `<button class="video-timeline" type="button" aria-label="${label}"><i></i></button>`;
 }
 
 function renderPlayButton(item) {
@@ -318,7 +318,7 @@ function renderMediaItem(item, project) {
   }
 
   return `
-    <figure class="video-frame video-frame--${item.orientation || "landscape"}${item.manual ? " video-frame--manual" : ""} media-unit"${item.poster ? ` style='--poster: url("${item.poster}")'` : ""}>
+    <figure class="video-frame video-frame--${item.orientation || "landscape"}${item.manual ? " video-frame--manual" : ""}${item.autoplay ? " is-playing" : ""} media-unit"${item.poster ? ` style='--poster: url("${item.poster}")'` : ""}>
       <iframe src="${withAutoplay(item.src, item.autoplay)}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       ${renderPlayButton(item)}
       ${renderSoundToggle(item)}
@@ -356,7 +356,7 @@ function renderAwards(project) {
   if (!project.awards?.length) return "";
   return `
     <section class="case-awards" aria-label="${project.client} awards">
-      <span>Wins</span>
+      <span>Awards</span>
       <ul>
         ${project.awards.map((award) => `<li>${award}</li>`).join("")}
       </ul>
@@ -444,16 +444,58 @@ function wireSoundToggles() {
 }
 
 function wireVideoControls() {
+  const estimatedDurations = new WeakMap();
+
+  const updateTimeline = (frame, progress) => {
+    frame.style.setProperty("--video-progress", `${Math.max(0, Math.min(100, progress))}%`);
+  };
+
+  const seekFrame = (frame, event) => {
+    const bar = event.target.closest(".video-timeline");
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    const ratio = rect.width ? (event.clientX - rect.left) / rect.width : 0;
+    const video = frame.querySelector("video");
+    if (video?.duration) {
+      video.currentTime = Math.max(0, Math.min(video.duration, ratio * video.duration));
+      updateTimeline(frame, ratio * 100);
+      return;
+    }
+
+    const iframe = frame.querySelector("iframe");
+    if (!iframe?.contentWindow) return;
+    const duration = estimatedDurations.get(frame) || 60;
+    const time = Math.max(0, Math.min(duration, ratio * duration));
+    frame.dataset.timelineStart = String(performance.now() - time * 1000);
+    frame.classList.add("is-playing");
+    iframe.contentWindow.postMessage(JSON.stringify({ method: "setCurrentTime", value: time }), "*");
+    iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "seekTo", args: [time, true] }), "*");
+    iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
+    iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
+    updateTimeline(frame, ratio * 100);
+  };
+
   document.querySelectorAll(".video-frame").forEach((frame) => {
     const video = frame.querySelector("video");
-    if (!video) return;
-    const setProgress = () => {
-      if (!video.duration) return;
-      const progress = Math.max(0, Math.min(100, (video.currentTime / video.duration) * 100));
-      frame.style.setProperty("--video-progress", `${progress}%`);
-    };
-    video.addEventListener("timeupdate", setProgress);
-    video.addEventListener("loadedmetadata", setProgress);
+    const timeline = frame.querySelector(".video-timeline");
+    timeline?.addEventListener("click", (event) => seekFrame(frame, event));
+
+    if (video) {
+      const setProgress = () => {
+        if (!video.duration) return;
+        updateTimeline(frame, (video.currentTime / video.duration) * 100);
+      };
+      video.addEventListener("timeupdate", setProgress);
+      video.addEventListener("loadedmetadata", setProgress);
+      return;
+    }
+
+    const iframe = frame.querySelector("iframe");
+    if (!iframe) return;
+    estimatedDurations.set(frame, frame.classList.contains("video-frame--portrait") ? 22 : 60);
+    if (frame.classList.contains("is-playing") && !frame.dataset.timelineStart) {
+      frame.dataset.timelineStart = String(performance.now());
+    }
   });
 
   document.querySelectorAll(".video-play").forEach((button) => {
@@ -462,10 +504,24 @@ function wireVideoControls() {
       const iframe = frame?.querySelector("iframe");
       if (!iframe?.contentWindow) return;
       frame.classList.add("is-playing");
+      frame.dataset.timelineStart = String(performance.now());
       iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
       iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
     });
   });
+
+  const tickIframeTimelines = () => {
+    document.querySelectorAll(".video-frame.is-playing iframe").forEach((iframe) => {
+      const frame = iframe.closest(".video-frame");
+      if (!frame) return;
+      const duration = estimatedDurations.get(frame) || 60;
+      const start = Number(frame.dataset.timelineStart || performance.now());
+      const elapsed = ((performance.now() - start) / 1000) % duration;
+      updateTimeline(frame, (elapsed / duration) * 100);
+    });
+    window.requestAnimationFrame(tickIframeTimelines);
+  };
+  tickIframeTimelines();
 }
 
 function wireInteractions() {
