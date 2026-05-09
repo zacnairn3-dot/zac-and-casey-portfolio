@@ -94,10 +94,10 @@ a:hover {
   padding: 0.52rem 0.28rem;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(50, 29, 25, 0.18);
+  border: 1px solid transparent;
   border-radius: var(--box-radius);
-  background: rgba(255, 250, 240, 0.82);
-  color: var(--ink);
+  background: transparent;
+  color: rgba(50, 29, 25, 0.55);
   font: 760 0.56rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -105,16 +105,19 @@ a:hover {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: translateY(-50%);
-  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .rail-toggle::before {
   content: none;
 }
 
-.rail-toggle:hover {
+.rail-toggle:hover,
+.rail-toggle:focus-visible {
+  background: rgba(255, 250, 240, 0.82);
   color: var(--red);
   border-color: color-mix(in srgb, var(--red) 38%, rgba(50, 29, 25, 0.18));
+  outline: none;
   transform: translateY(-50%) translateX(1px);
 }
 
