@@ -83,7 +83,7 @@ const projects = [
     note: "Bacteria art",
     awards: ["2x AXIS 2025 Winner", "Bestads Best Outdoor Winner"],
     media: [
-      { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: true },
+      { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: false, manual: true, poster: "assets/nougly-1.jpg" },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
       { type: "image", title: "OOH blue", src: "assets/nougly-seq-02.jpg" },
       { type: "image", title: "Mockup", src: "assets/nougly-seq-03.jpg" },
@@ -103,9 +103,9 @@ const projects = [
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
     note: "Screen relief",
-    awards: ["AWARD Bronze", "2x AWARD Finalist", "Immortal Awards ANZ Finalist", "MAD STARS 3x Finalist", "Bestads Best Interactive Winner"],
+    awards: ["AWARD 2022 Bronze", "2x AWARD 2022 Finalist", "Immortal Awards 2022 ANZ Finalist", "MAD STARS Finalist", "Bestads Best Interactive Winner"],
     media: [
-      { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: true },
+      { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: false, manual: true, poster: "assets/postit-1.jpg" },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
       { type: "image", title: "Idea board", src: "assets/postit-seq-02.jpg" },
       { type: "image", title: "Idea board", src: "assets/postit-seq-03.jpg" }
@@ -123,10 +123,10 @@ const projects = [
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
     note: "Cottage chief",
-    awards: ["B&T Best Digital Campaign Winner", "B&T Bravery Finalist", "AWARD Finalist"],
+    awards: ["B&T 2024 Best Digital Winner", "B&T 2024 Bravery Finalist", "AWARD 2025 Finalist"],
     media: [
       { type: "image", title: "Meet Margaret board", src: "assets/bulla-seq-01.png" },
-      { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: true },
+      { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: false, manual: true, poster: "assets/bulla-1.jpg" },
       { type: "embed", title: "Intro", src: "https://player.vimeo.com/video/1059403358", orientation: "portrait", autoplay: true },
       { type: "embed", title: "POV", src: "https://player.vimeo.com/video/1059403352", orientation: "portrait", autoplay: true },
       { type: "embed", title: "Eat in a Day", src: "https://player.vimeo.com/video/1059403329", orientation: "portrait", autoplay: true }
@@ -296,6 +296,10 @@ function renderPlayButton(item) {
   return `<button class="video-play" type="button" aria-label="Play ${item.title}"><span>Play</span></button>`;
 }
 
+function renderClickTarget(item) {
+  return `<button class="video-click-target" type="button" aria-label="Play or pause ${item.title}"></button>`;
+}
+
 function renderMediaItem(item, project) {
   if (item.type === "image") {
     const size = imageSizes[item.src];
@@ -309,8 +313,9 @@ function renderMediaItem(item, project) {
 
   if (item.type === "video") {
     return `
-      <figure class="video-frame video-frame--landscape media-unit">
+      <figure class="video-frame video-frame--landscape is-playing media-unit">
         <video src="${item.src}" autoplay muted loop playsinline></video>
+        ${renderClickTarget(item)}
         ${renderSoundToggle(item)}
         ${renderTimeline(item)}
       </figure>
@@ -320,6 +325,7 @@ function renderMediaItem(item, project) {
   return `
     <figure class="video-frame video-frame--${item.orientation || "landscape"}${item.manual ? " video-frame--manual" : ""}${item.autoplay ? " is-playing" : ""} media-unit"${item.poster ? ` style='--poster: url("${item.poster}")'` : ""}>
       <iframe src="${withAutoplay(item.src, item.autoplay)}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      ${renderClickTarget(item)}
       ${renderPlayButton(item)}
       ${renderSoundToggle(item)}
       ${renderTimeline(item)}
@@ -450,6 +456,59 @@ function wireVideoControls() {
     frame.style.setProperty("--video-progress", `${Math.max(0, Math.min(100, progress))}%`);
   };
 
+  const iframeCommand = (iframe, command) => {
+    iframe.contentWindow.postMessage(JSON.stringify({ method: command }), "*");
+    iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: command === "play" ? "playVideo" : "pauseVideo", args: [] }), "*");
+  };
+
+  const getEmbedTime = (frame) => {
+    const duration = estimatedDurations.get(frame) || 60;
+    if (frame.dataset.pausedAt) return Number(frame.dataset.pausedAt);
+    const start = Number(frame.dataset.timelineStart || performance.now());
+    return ((performance.now() - start) / 1000) % duration;
+  };
+
+  const playFrame = (frame) => {
+    const video = frame.querySelector("video");
+    if (video) {
+      video.play().catch(() => {});
+      frame.classList.add("is-playing");
+      return;
+    }
+
+    const iframe = frame.querySelector("iframe");
+    if (!iframe?.contentWindow) return;
+    const pausedAt = Number(frame.dataset.pausedAt || 0);
+    frame.classList.add("is-playing");
+    frame.dataset.timelineStart = String(performance.now() - pausedAt * 1000);
+    delete frame.dataset.pausedAt;
+    iframeCommand(iframe, "play");
+  };
+
+  const pauseFrame = (frame) => {
+    const video = frame.querySelector("video");
+    if (video) {
+      video.pause();
+      frame.classList.remove("is-playing");
+      return;
+    }
+
+    const iframe = frame.querySelector("iframe");
+    if (!iframe?.contentWindow) return;
+    const pausedAt = getEmbedTime(frame);
+    frame.dataset.pausedAt = String(pausedAt);
+    frame.classList.remove("is-playing");
+    iframeCommand(iframe, "pause");
+  };
+
+  const toggleFrame = (frame) => {
+    if (frame.classList.contains("is-playing")) {
+      pauseFrame(frame);
+    } else {
+      playFrame(frame);
+    }
+  };
+
   const seekFrame = (frame, event) => {
     const bar = event.target.closest(".video-timeline");
     if (!bar) return;
@@ -467,11 +526,11 @@ function wireVideoControls() {
     const duration = estimatedDurations.get(frame) || 60;
     const time = Math.max(0, Math.min(duration, ratio * duration));
     frame.dataset.timelineStart = String(performance.now() - time * 1000);
+    delete frame.dataset.pausedAt;
     frame.classList.add("is-playing");
     iframe.contentWindow.postMessage(JSON.stringify({ method: "setCurrentTime", value: time }), "*");
     iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "seekTo", args: [time, true] }), "*");
-    iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
-    iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
+    iframeCommand(iframe, "play");
     updateTimeline(frame, ratio * 100);
   };
 
@@ -487,6 +546,8 @@ function wireVideoControls() {
       };
       video.addEventListener("timeupdate", setProgress);
       video.addEventListener("loadedmetadata", setProgress);
+      video.addEventListener("play", () => frame.classList.add("is-playing"));
+      video.addEventListener("pause", () => frame.classList.remove("is-playing"));
       return;
     }
 
@@ -498,15 +559,17 @@ function wireVideoControls() {
     }
   });
 
+  document.querySelectorAll(".video-click-target").forEach((button) => {
+    button.addEventListener("click", () => {
+      const frame = button.closest(".video-frame");
+      if (frame) toggleFrame(frame);
+    });
+  });
+
   document.querySelectorAll(".video-play").forEach((button) => {
     button.addEventListener("click", () => {
       const frame = button.closest(".video-frame");
-      const iframe = frame?.querySelector("iframe");
-      if (!iframe?.contentWindow) return;
-      frame.classList.add("is-playing");
-      frame.dataset.timelineStart = String(performance.now());
-      iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
-      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
+      if (frame) playFrame(frame);
     });
   });
 

@@ -85,21 +85,21 @@ a:hover {
 
 .rail-toggle {
   position: fixed;
-  left: 0.85rem;
+  left: calc(min(20rem, 26vw) - 2.25rem);
   top: 50%;
-  z-index: 12;
-  width: 2.5rem;
-  min-height: 6rem;
+  z-index: 20;
+  width: 1.7rem;
+  min-height: 4.8rem;
   margin: 0;
-  padding: 0.7rem 0.42rem;
+  padding: 0.52rem 0.28rem;
   display: grid;
   place-items: center;
   border: 1px solid rgba(50, 29, 25, 0.18);
   border-radius: var(--box-radius);
-  background: rgba(255, 250, 240, 0.54);
+  background: rgba(255, 250, 240, 0.82);
   color: var(--ink);
-  font: 760 0.68rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.12em;
+  font: 760 0.56rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   writing-mode: vertical-rl;
@@ -130,8 +130,8 @@ a:hover {
 }
 
 body.rail-collapsed .rail {
-  width: 4.5rem;
-  padding-inline: 0.8rem;
+  width: 3.3rem;
+  padding-inline: 0.55rem;
   background: rgba(245, 241, 235, 0.78);
   overflow: hidden;
 }
@@ -155,7 +155,11 @@ body.rail-collapsed .rail-content {
 }
 
 body.rail-collapsed main {
-  margin-left: 4.5rem;
+  margin-left: 3.3rem;
+}
+
+body.rail-collapsed .rail-toggle {
+  left: 0.75rem;
 }
 
 .rail-top-link {
@@ -181,7 +185,9 @@ body.rail-collapsed main {
 }
 
 .rail-block--single {
-  margin-top: 0.35rem;
+  margin-top: 0.55rem;
+  padding-top: 0.95rem;
+  border-top: 1px dashed rgba(50, 29, 25, 0.28);
 }
 
 .rail-block {
@@ -215,7 +221,7 @@ body.rail-collapsed main {
   padding: 0;
   display: grid;
   gap: 0.18rem;
-  font-size: 0.92rem;
+  font-size: 0.96rem;
   line-height: 1.25;
   color: rgba(50, 29, 25, 0.72);
 }
@@ -223,6 +229,14 @@ body.rail-collapsed main {
 .rail-list--links a {
   color: rgba(50, 29, 25, 0.55);
   transition: color 200ms ease;
+}
+
+.rail-block--single .rail-list--links a {
+  color: rgba(50, 29, 25, 0.72);
+  font-size: clamp(1.05rem, 1.18vw, 1.28rem);
+  font-weight: 660;
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
 
 .rail-list--links a.is-current,
@@ -253,7 +267,7 @@ body.rail-collapsed main {
 .project-nav a {
   display: inline-block;
   color: rgba(50, 29, 25, 0.55);
-  font-size: clamp(1.05rem, 1.2vw, 1.25rem);
+  font-size: clamp(1.14rem, 1.32vw, 1.42rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
   transition: color 200ms ease;
@@ -303,10 +317,10 @@ main {
 
 .hero-stage {
   position: absolute;
-  right: clamp(-1rem, 1vw, 1.4rem);
-  bottom: clamp(1.2rem, 5vh, 4rem);
-  z-index: 1;
-  width: min(44rem, 46vw);
+  right: clamp(0.4rem, 2.2vw, 2.8rem);
+  bottom: clamp(1.8rem, 6vh, 5.2rem);
+  z-index: 2;
+  width: min(34rem, 37vw);
   margin: 0;
   padding: 0.65rem;
   display: block;
@@ -314,25 +328,25 @@ main {
   border-radius: var(--box-radius);
   background:
     repeating-linear-gradient(0deg, rgba(50, 29, 25, 0.025) 0 1px, transparent 1px 7px),
-    rgba(255, 250, 240, 0.5);
+    rgba(255, 250, 240, 0.62);
   transform: rotate(-1.4deg);
   animation: stage-drift 9s ease-in-out infinite alternate;
-  opacity: 0.86;
+  opacity: 1;
 }
 
 .hero-stage span {
   position: absolute;
-  top: -2rem;
-  left: 0.72rem;
+  left: 0.5rem;
+  bottom: 0.5rem;
   z-index: 2;
   width: max-content;
   max-width: 100%;
-  padding: 0.34rem 0.48rem 0.3rem;
+  padding: 0.28rem 0.4rem 0.25rem;
   border: 1px solid var(--red);
   border-radius: var(--box-radius);
   color: var(--red);
   background: rgba(255, 250, 240, 0.68);
-  font-size: 0.68rem;
+  font-size: 0.58rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.08em;
@@ -352,7 +366,7 @@ main {
   width: 100%;
   display: block;
   border-radius: calc(var(--box-radius) * 0.8);
-  filter: saturate(0.92) contrast(0.96);
+  filter: none;
 }
 
 .hero-dog-wrap {
@@ -408,7 +422,7 @@ main {
 }
 
 .hero-dog-wrap--neal span {
-  bottom: calc(100% - 0.08rem);
+  bottom: calc(100% + 0.02rem);
 }
 
 @keyframes dog-float-a {
@@ -824,22 +838,33 @@ main {
   background: var(--paper);
 }
 
+.video-click-target {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
 .video-timeline {
   position: absolute;
   left: 0.72rem;
   right: 0.72rem;
   bottom: 0.72rem;
-  z-index: 3;
-  height: 0.22rem;
+  z-index: 4;
+  height: 0.42rem;
   padding: 0;
-  border: 1px solid rgba(255, 250, 240, 0.82);
+  border: 1px solid rgba(255, 250, 240, 0.9);
   border-radius: 999px;
-  background: rgba(50, 29, 25, 0.22);
-  opacity: 0;
+  background: rgba(50, 29, 25, 0.36);
+  opacity: 0.5;
   overflow: hidden;
   cursor: pointer;
-  transform: translateY(0.25rem);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translateY(0.1rem);
+  transition: opacity 180ms ease, transform 180ms ease, height 180ms ease, background 180ms ease;
   appearance: none;
 }
 
@@ -856,6 +881,7 @@ main {
 .video-frame:focus-within .video-timeline {
   opacity: 1;
   transform: translateY(0);
+  height: 0.52rem;
 }
 
 .video-timeline:hover,
@@ -869,7 +895,7 @@ main {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 4;
+  z-index: 5;
   width: clamp(4.4rem, 8vw, 6.2rem);
   aspect-ratio: 1;
   display: grid;
@@ -916,7 +942,7 @@ main {
   position: absolute;
   top: 0.62rem;
   right: 0.62rem;
-  z-index: 2;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1231,12 +1257,20 @@ main {
     width: 16rem;
   }
 
+  .rail-toggle {
+    left: calc(16rem - 2.25rem);
+  }
+
   main {
     margin-left: 16rem;
   }
 
   body.rail-collapsed main {
-    margin-left: 4.5rem;
+    margin-left: 3.3rem;
+  }
+
+  body.rail-collapsed .rail-toggle {
+    left: 0.75rem;
   }
 
   .award-board,
