@@ -8,6 +8,12 @@
   --blue: #6d8faa;
   --green: #5e7f68;
   --yellow: #ffd660;
+  --soft-ink: #91847d;
+  --rail-width: min(20rem, 26vw);
+  --rail-collapsed-width: 3.3rem;
+  --rail-toggle-width: 2rem;
+  --rail-toggle-overhang: 0.28rem;
+  --rail-divider-end-gap: 1rem;
   --box-radius: 0.32rem;
   --frame-border: 1px solid rgba(50, 29, 25, 0.2);
   font-family: "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
@@ -72,7 +78,7 @@ a:hover {
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 10;
-  width: min(20rem, 26vw);
+  width: var(--rail-width);
   padding: 2rem 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -85,27 +91,35 @@ a:hover {
 
 .rail-toggle {
   position: fixed;
-  left: calc(min(20rem, 26vw) - 2.25rem);
+  left: calc(var(--rail-width) - var(--rail-toggle-width) + var(--rail-toggle-overhang));
   top: 50%;
   z-index: 20;
-  width: 1.7rem;
-  min-height: 4.8rem;
+  width: var(--rail-toggle-width);
+  height: 5.5rem;
+  min-height: 0;
   margin: 0;
-  padding: 0.52rem 0.28rem;
+  padding: 0;
   display: grid;
   place-items: center;
-  border: 1px solid transparent;
-  border-radius: var(--box-radius);
-  background: transparent;
+  border: 1px solid rgba(50, 29, 25, 0.12);
+  border-radius: calc(var(--box-radius) * 1.8);
+  background: rgba(255, 250, 240, 0.56);
   color: rgba(50, 29, 25, 0.55);
-  font: 760 0.56rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.1em;
+  box-shadow: 0 0 0 1px rgba(255, 250, 240, 0.46), 0 0.2rem 0.8rem rgba(50, 29, 25, 0.035);
+  backdrop-filter: blur(8px);
+  font: 780 0.64rem/1 "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: translateY(-50%);
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.rail-toggle span {
+  display: block;
+  transform: translateX(0.02em);
 }
 
 .rail-toggle::before {
@@ -117,8 +131,9 @@ a:hover {
   background: rgba(255, 250, 240, 0.82);
   color: var(--red);
   border-color: color-mix(in srgb, var(--red) 38%, rgba(50, 29, 25, 0.18));
+  box-shadow: 0 0 0 1px rgba(255, 250, 240, 0.7), 0 0.35rem 1.5rem rgba(50, 29, 25, 0.08);
   outline: none;
-  transform: translateY(-50%) translateX(1px);
+  transform: translateY(-50%);
 }
 
 .rail-content {
@@ -133,7 +148,7 @@ a:hover {
 }
 
 body.rail-collapsed .rail {
-  width: 3.3rem;
+  width: var(--rail-collapsed-width);
   padding-inline: 0.55rem;
   background: rgba(245, 241, 235, 0.78);
   overflow: hidden;
@@ -158,11 +173,11 @@ body.rail-collapsed .rail-content {
 }
 
 body.rail-collapsed main {
-  margin-left: 3.3rem;
+  margin-left: var(--rail-collapsed-width);
 }
 
 body.rail-collapsed .rail-toggle {
-  left: 0.75rem;
+  left: calc(var(--rail-collapsed-width) - var(--rail-toggle-width) + var(--rail-toggle-overhang));
 }
 
 .rail-top-link {
@@ -188,9 +203,19 @@ body.rail-collapsed .rail-toggle {
 }
 
 .rail-block--single {
+  position: relative;
   margin-top: 0.55rem;
   padding-top: 0.95rem;
+}
+
+.rail-block--single::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: var(--rail-divider-end-gap);
   border-top: 1px dashed rgba(50, 29, 25, 0.28);
+  pointer-events: none;
 }
 
 .rail-block {
@@ -212,7 +237,7 @@ body.rail-collapsed .rail-toggle {
   content: "";
   position: absolute;
   left: 0;
-  right: 0;
+  right: var(--rail-divider-end-gap);
   bottom: 0;
   border-bottom: 1px dashed rgba(50, 29, 25, 0.28);
   pointer-events: none;
@@ -283,7 +308,7 @@ body.rail-collapsed .rail-toggle {
 
 
 main {
-  margin-left: min(20rem, 26vw);
+  margin-left: var(--rail-width);
   margin-top: 0;
 }
 
@@ -294,14 +319,14 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1.6rem;
+  gap: 0.45rem;
   overflow: hidden;
   isolation: isolate;
 }
 
 .hero-copy {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   max-width: min(78rem, 100%);
 }
 
@@ -319,12 +344,13 @@ main {
 }
 
 .hero-stage {
-  position: absolute;
-  right: clamp(0.4rem, 2.2vw, 2.8rem);
-  bottom: clamp(1.8rem, 6vh, 5.2rem);
+  position: relative;
+  right: auto;
+  bottom: auto;
+  align-self: flex-end;
   z-index: 2;
-  width: min(34rem, 37vw);
-  margin: 0;
+  width: clamp(15.5rem, 20vw, 20rem);
+  margin: -1rem clamp(0.2rem, 1.4vw, 1.8rem) 0 0;
   padding: 0.65rem;
   display: block;
   border: 0;
@@ -339,8 +365,8 @@ main {
 
 .hero-stage span {
   position: absolute;
-  left: 0.5rem;
-  bottom: 0.5rem;
+  left: 0.65rem;
+  bottom: -1.55rem;
   z-index: 2;
   width: max-content;
   max-width: 100%;
@@ -355,7 +381,7 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0;
-  transform: translateY(0.25rem);
+  transform: translateY(-0.2rem);
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
@@ -373,23 +399,40 @@ main {
 }
 
 .hero-dog-wrap {
+  --dog-mouth-x: 50%;
+  --dog-mouth-y: 66%;
+  --dog-mouth-width: 12%;
+  --dog-mouth-height: 4%;
+  --dog-mouth-rotate: 0deg;
   position: absolute;
-  z-index: 4;
-  width: clamp(5.6rem, 10vw, 11.2rem);
+  z-index: 8;
+  width: clamp(5rem, 8.7vw, 9.8rem);
+  display: block;
   pointer-events: auto;
   mix-blend-mode: normal;
   opacity: 1;
+  cursor: pointer;
+}
+
+.hero-dog-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -0.9rem;
+  z-index: 0;
 }
 
 .hero-dog-wrap img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   display: block;
   pointer-events: none;
 }
 
-.hero-dog-wrap span {
+.hero-dog-label {
   position: absolute;
+  z-index: 2;
   left: 50%;
   bottom: calc(100% + 0.12rem);
   padding: 0.3rem 0.45rem 0.28rem;
@@ -403,29 +446,91 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0;
+  pointer-events: none;
   transform: translate(-50%, 0.2rem);
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.hero-dog-wrap:hover span {
+.hero-dog-wrap:hover .hero-dog-label,
+.hero-dog-wrap.is-dog-hovered .hero-dog-label {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 
+.hero-dog-mouth {
+  position: absolute;
+  z-index: 2;
+  left: var(--dog-mouth-x);
+  top: var(--dog-mouth-y);
+  width: var(--dog-mouth-width);
+  height: var(--dog-mouth-height);
+  min-width: 0.44rem;
+  min-height: 0.22rem;
+  border-radius: 46% 46% 62% 62%;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(238, 87, 77, 0.95) 0 46%, transparent 48%),
+    rgba(24, 11, 10, 0.94);
+  box-shadow: inset 0 0.035rem 0 rgba(255, 250, 240, 0.28), 0 0.03rem 0.08rem rgba(38, 20, 17, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(var(--dog-mouth-rotate)) scaleY(0.18);
+  transform-origin: 50% 0;
+}
+
+.hero-dog-wrap:hover .hero-dog-mouth,
+.hero-dog-wrap.is-dog-hovered .hero-dog-mouth {
+  opacity: 0.92;
+  animation: dog-mouth-chatter 230ms steps(2, end) infinite;
+}
+
+.hero-dog-wrap:hover img,
+.hero-dog-wrap.is-dog-hovered img {
+  animation: dog-jaw-nudge 230ms steps(2, end) infinite;
+  transform-origin: 50% 70%;
+}
+
 .hero-dog-wrap--lola {
+  --dog-mouth-x: 39.5%;
+  --dog-mouth-y: 65%;
+  --dog-mouth-width: 9.5%;
+  --dog-mouth-height: 4.2%;
+  --dog-mouth-rotate: -4deg;
   left: clamp(1rem, 4vw, 5rem);
   bottom: 20%;
   animation: dog-float-a 6.4s ease-in-out infinite alternate;
 }
 
 .hero-dog-wrap--neal {
+  --dog-mouth-x: 31.8%;
+  --dog-mouth-y: 76.2%;
+  --dog-mouth-width: 9%;
+  --dog-mouth-height: 3.1%;
+  --dog-mouth-rotate: 24deg;
   right: clamp(1rem, 4vw, 5rem);
   top: 18%;
   animation: dog-float-b 7s ease-in-out infinite alternate;
 }
 
-.hero-dog-wrap--neal span {
-  bottom: calc(100% + 0.02rem);
+.hero-dog-wrap--neal .hero-dog-label {
+  bottom: calc(100% + 0.12rem);
+}
+
+@keyframes dog-mouth-chatter {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(var(--dog-mouth-rotate)) scaleY(0.42);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(var(--dog-mouth-rotate)) scaleY(1.16);
+  }
+}
+
+@keyframes dog-jaw-nudge {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(0.035rem) scaleY(1.012);
+  }
 }
 
 @keyframes dog-float-a {
@@ -494,7 +599,7 @@ main {
 
 .hero-aside {
   display: inline;
-  color: rgba(50, 29, 25, 0.5);
+  color: var(--soft-ink);
 }
 
 .kicker {
@@ -613,7 +718,9 @@ main {
   .case-opener,
   .case-note,
   .hero-stage,
-  .hero-dog-wrap {
+  .hero-dog-wrap,
+  .hero-dog-wrap img,
+  .hero-dog-mouth {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
@@ -1256,16 +1363,20 @@ main {
 }
 
 @media (max-width: 1100px) {
+  :root {
+    --rail-width: 16rem;
+  }
+
   .rail {
-    width: 16rem;
+    width: var(--rail-width);
   }
 
   .rail-toggle {
-    left: calc(16rem - 2.25rem);
+    left: calc(var(--rail-width) - var(--rail-toggle-width) + var(--rail-toggle-overhang));
   }
 
   main {
-    margin-left: 16rem;
+    margin-left: var(--rail-width);
   }
 
   body.rail-collapsed main {
@@ -1273,7 +1384,7 @@ main {
   }
 
   body.rail-collapsed .rail-toggle {
-    left: 0.75rem;
+    left: calc(var(--rail-collapsed-width) - var(--rail-toggle-width) + var(--rail-toggle-overhang));
   }
 
   .award-board,
@@ -1301,7 +1412,7 @@ main {
   }
 
   .hero-stage {
-    width: min(25rem, 40vw);
+    width: clamp(14.5rem, 26vw, 17.5rem);
   }
 
   .hero-dog-wrap--neal {
@@ -1316,6 +1427,10 @@ main {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --rail-divider-end-gap: 0;
+  }
+
   .rail {
     position: relative;
     inset: auto;
@@ -1362,11 +1477,8 @@ main {
   }
 
   .hero-stage {
-    position: relative;
-    right: auto;
-    bottom: auto;
     width: min(100%, 22rem);
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 0;
   }
 
   .hero-dog-wrap {

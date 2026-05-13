@@ -36,7 +36,7 @@ const projects = [
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
     note: "Public pressure",
-    awards: ["AWARD 2026 Bronze"],
+    awards: ["AXIS 2025 3x Bronze", "AWARD Awards 2025 Bronze", "Webby Awards 2025 Honoree", "Cairns Crocodiles 2025 Bronze"],
     media: [
       { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
       { type: "image", title: "Campaign image", src: "assets/wwf-seq-01.jpg" },
@@ -81,7 +81,7 @@ const projects = [
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
     note: "Bacteria art",
-    awards: ["2x AXIS 2025 Winner", "Bestads Best Outdoor Winner"],
+    awards: ["AXIS 2025 2x Silver", "AXIS 2025 2x Bronze"],
     media: [
       { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: false, manual: true, poster: "assets/nougly-1.jpg" },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
@@ -103,7 +103,7 @@ const projects = [
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
     note: "Screen relief",
-    awards: ["AWARD 2022 Bronze", "2x AWARD 2022 Finalist", "Immortal Awards 2022 ANZ Finalist", "MAD STARS Finalist", "Bestads Best Interactive Winner"],
+    awards: ["AWARD Awards 2022 Bronze", "2x AWARD Awards 2022 Finalist", "Immortal Awards ANZ Finalist", "MAD STARS Finalist", "Caples Finalist", "Campaign Brief The Work Accepted", "Best Ads Interactive Recognition"],
     media: [
       { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: false, manual: true, poster: "assets/postit-1.jpg" },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
@@ -123,7 +123,7 @@ const projects = [
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
     note: "Cottage chief",
-    awards: ["B&T 2024 Best Digital Winner", "B&T 2024 Bravery Finalist", "AWARD 2025 Finalist"],
+    awards: ["B&T 2024 Best Digital Campaign Winner", "B&T 2024 Bravery Finalist", "B&T 2024 Best Use of Social Media Finalist", "AWARD Awards 2025 Finalist"],
     media: [
       { type: "image", title: "Meet Margaret board", src: "assets/bulla-seq-01.png" },
       { type: "embed", title: "Bulla on Gruen", src: "https://player.vimeo.com/video/951795401", orientation: "landscape", autoplay: false, manual: true, poster: "assets/bulla-1.jpg" },
@@ -670,12 +670,200 @@ function wireInteractions() {
   });
 }
 
+let dogAudioContext;
+const dogBarkCooldowns = new Map();
+
+function getDogAudioContext() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return null;
+  if (!dogAudioContext) dogAudioContext = new AudioContextClass();
+  if (dogAudioContext.state === "suspended") dogAudioContext.resume().catch(() => {});
+  return dogAudioContext;
+}
+
+function makeNoiseBuffer(context, duration) {
+  const frameCount = Math.max(1, Math.floor(context.sampleRate * duration));
+  const buffer = context.createBuffer(1, frameCount, context.sampleRate);
+  const data = buffer.getChannelData(0);
+
+  for (let i = 0; i < frameCount; i += 1) {
+    data[i] = Math.random() * 2 - 1;
+  }
+
+  return buffer;
+}
+
+function barkPulse(context, start, profile, phrase = {}) {
+  const oscillatorA = context.createOscillator();
+  const oscillatorB = context.createOscillator();
+  const oscillatorGain = context.createGain();
+  const filter = context.createBiquadFilter();
+  const barkFormant = context.createBiquadFilter();
+  const noise = context.createBufferSource();
+  const noiseGain = context.createGain();
+  const output = context.createGain();
+  const end = start + profile.duration;
+  const frequency = profile.frequency * (phrase.frequencyScale || 1);
+
+  oscillatorA.type = profile.wave;
+  oscillatorB.type = "square";
+  oscillatorA.frequency.setValueAtTime(frequency * profile.scoop, start);
+  oscillatorA.frequency.exponentialRampToValueAtTime(frequency, start + 0.012);
+  oscillatorA.frequency.setValueAtTime(frequency * profile.step, start + profile.duration * 0.42);
+  oscillatorA.frequency.exponentialRampToValueAtTime(frequency * profile.drop, end);
+  oscillatorB.frequency.setValueAtTime(frequency * 2.05, start);
+  oscillatorB.frequency.setValueAtTime(frequency * 1.58, start + profile.duration * 0.5);
+  oscillatorB.frequency.exponentialRampToValueAtTime(frequency * 1.08, end);
+
+  filter.type = "bandpass";
+  filter.frequency.setValueAtTime(profile.noiseFrequency, start);
+  filter.Q.setValueAtTime(profile.noiseQ, start);
+
+  barkFormant.type = "bandpass";
+  barkFormant.frequency.setValueAtTime(profile.formant, start);
+  barkFormant.Q.setValueAtTime(profile.formantQ, start);
+
+  noise.buffer = makeNoiseBuffer(context, profile.duration);
+
+  oscillatorGain.gain.setValueAtTime(0.0001, start);
+  oscillatorGain.gain.exponentialRampToValueAtTime(profile.toneLevel, start + 0.006);
+  oscillatorGain.gain.exponentialRampToValueAtTime(profile.toneLevel * 0.55, start + 0.026);
+  oscillatorGain.gain.exponentialRampToValueAtTime(0.0001, end);
+
+  noiseGain.gain.setValueAtTime(0.0001, start);
+  noiseGain.gain.exponentialRampToValueAtTime(profile.noiseLevel, start + 0.004);
+  noiseGain.gain.exponentialRampToValueAtTime(profile.noiseLevel * 0.48, start + 0.03);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, end);
+
+  output.gain.setValueAtTime(profile.volume * (phrase.volumeScale || 1), start);
+  output.gain.exponentialRampToValueAtTime(0.0001, end + 0.025);
+
+  oscillatorA.connect(oscillatorGain);
+  oscillatorB.connect(oscillatorGain);
+  oscillatorGain.connect(output);
+  noise.connect(filter);
+  filter.connect(barkFormant);
+  barkFormant.connect(noiseGain);
+  noiseGain.connect(output);
+  output.connect(context.destination);
+
+  oscillatorA.start(start);
+  oscillatorA.stop(end + 0.03);
+  oscillatorB.start(start);
+  oscillatorB.stop(end + 0.03);
+  noise.start(start);
+  noise.stop(end + 0.03);
+}
+
+function playDogBark(kind) {
+  const now = performance.now();
+  const previous = dogBarkCooldowns.get(kind) || 0;
+  if (now - previous < 850) return;
+  dogBarkCooldowns.set(kind, now);
+
+  const context = getDogAudioContext();
+  if (!context) return;
+
+  const profiles = {
+    lola: {
+      wave: "triangle",
+      frequency: 1180,
+      scoop: 0.72,
+      step: 1.34,
+      drop: 0.86,
+      duration: 0.105,
+      toneLevel: 0.22,
+      noiseLevel: 0.08,
+      noiseFrequency: 5100,
+      noiseQ: 12,
+      formant: 1850,
+      formantQ: 9,
+      volume: 0.22,
+      phrases: [
+        { gap: 0, frequencyScale: 1, volumeScale: 1 },
+        { gap: 0.115, frequencyScale: 1.26, volumeScale: 0.92 },
+        { gap: 0.255, frequencyScale: 0.9, volumeScale: 0.78 }
+      ]
+    },
+    neal: {
+      wave: "square",
+      frequency: 850,
+      scoop: 0.82,
+      step: 1.5,
+      drop: 0.72,
+      duration: 0.13,
+      toneLevel: 0.19,
+      noiseLevel: 0.11,
+      noiseFrequency: 4100,
+      noiseQ: 9,
+      formant: 1350,
+      formantQ: 8,
+      volume: 0.21,
+      phrases: [
+        { gap: 0, frequencyScale: 1, volumeScale: 1 },
+        { gap: 0.145, frequencyScale: 0.78, volumeScale: 0.92 },
+        { gap: 0.31, frequencyScale: 1.18, volumeScale: 0.76 }
+      ]
+    }
+  };
+  const profile = profiles[kind] || profiles.lola;
+  const start = context.currentTime + 0.01;
+
+  profile.phrases.forEach((phrase) => {
+    barkPulse(context, start + phrase.gap, profile, phrase);
+  });
+}
+
+function wireDogBarks() {
+  const dogMap = [
+    [".hero-dog-wrap--lola", "lola"],
+    [".hero-dog-wrap--neal", "neal"]
+  ]
+    .map(([selector, kind]) => {
+      const dog = document.querySelector(selector);
+      return dog ? { dog, kind } : null;
+    })
+    .filter(Boolean);
+
+  if (!dogMap.length) return;
+
+  const setDogHover = (dog, kind, hovered) => {
+    const wasHovered = dog.classList.contains("is-dog-hovered");
+    dog.classList.toggle("is-dog-hovered", hovered);
+    if (hovered && !wasHovered) playDogBark(kind);
+  };
+
+  document.addEventListener("pointermove", (event) => {
+    dogMap.forEach(({ dog, kind }) => {
+      const rect = dog.getBoundingClientRect();
+      const pad = 18;
+      const hovered =
+        event.clientX >= rect.left - pad &&
+        event.clientX <= rect.right + pad &&
+        event.clientY >= rect.top - pad &&
+        event.clientY <= rect.bottom + pad;
+
+      setDogHover(dog, kind, hovered);
+    });
+  }, { passive: true });
+
+  document.addEventListener("pointerleave", () => {
+    dogMap.forEach(({ dog, kind }) => setDogHover(dog, kind, false));
+  });
+
+  dogMap.forEach(({ dog, kind }) => {
+    dog.addEventListener("focusin", () => setDogHover(dog, kind, true));
+    dog.addEventListener("focusout", () => setDogHover(dog, kind, false));
+  });
+}
+
 const visibleProjects = projects.filter((p) => !p.hidden);
 renderProjectGrid();
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
 wireSoundToggles();
 wireVideoControls();
+wireDogBarks();
 wireInteractions();
 
 function scrollToHash(hash = window.location.hash) {
