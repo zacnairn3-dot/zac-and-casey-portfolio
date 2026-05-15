@@ -1,5 +1,25 @@
 const projects = [
   {
+    id: "hard-rated",
+    client: "Hard Rated",
+    title: "The Hard Rated Homecoming",
+    line: "To launch Hard Rated in New Zealand, we turned one Kiwi in Sydney into a national retrieval mission, then gave him every reason to come home.",
+    role: "Launch / activation / PR",
+    result: "No.1 selling RTD three weeks after launch.",
+    color: "#e0b400",
+    image: "assets/hard-rated-helicopter-hero.jpg",
+    thumb: "assets/hard-rated-human-billboards.jpg",
+    note: "Stopping the brain drain",
+    awards: ["Spikes Asia 2026 Silver", "AXIS 2026 2x Bronze", "AXIS 2026 3x Finalist", "Bestads Best Print Winner"],
+    media: [
+      { type: "image", title: "Helicopter banner", src: "assets/hard-rated-helicopter-hero.jpg" },
+      { type: "videoLink", title: "The Hard Rated Homecoming case study", src: "https://www.lovethework.com/en/work/campaigns/the-hard-rated-homecoming-1953037", poster: "assets/hard-rated-human-billboards.jpg" },
+      { type: "image", title: "Bestads print winner", src: "assets/hard-rated-pursuit-support.jpg" },
+      { type: "image", title: "Welcome home", src: "assets/hard-rated-welcome-home.jpg" }
+    ],
+    watch: "https://www.lovethework.com/en/work/campaigns/the-hard-rated-homecoming-1953037"
+  },
+  {
     id: "x-long-white",
     client: "X by Long White",
     title: "The Sugar Liquidation Sale!",
@@ -10,10 +30,10 @@ const projects = [
     image: "assets/xlong-1.jpg",
     thumb: "assets/xlong-2.jpg",
     intro: "assets/intro-x-long-white.gif",
-    note: "Sugar sale",
-    awards: ["Bestads Best Interactive Winner", "Mumbrella 2026 Shortlist"],
+    note: "Sugar, liquidated",
+    awards: ["Bestads Best Interactive Winner", "AXIS 2026 Finalists", "Mumbrella 2026 Shortlist"],
     media: [
-      { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: false, manual: true, poster: "assets/xlong-1.jpg" },
+      { type: "embed", title: "The Sugar Liquidation Sale!", src: "https://player.vimeo.com/video/1132862636", orientation: "landscape", autoplay: false, manual: true, poster: "assets/xlong-video-poster.jpg" },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-01.jpg" },
       { type: "image", title: "PR mockup", src: "assets/xlong-seq-02.jpg" },
       { type: "image", title: "OOH", src: "assets/xlong-seq-03.jpg" },
@@ -28,14 +48,14 @@ const projects = [
     id: "wwf",
     client: "WWF",
     title: "Give Shane Jones the Finger",
-    line: "We corralled 40,000+ New Zealander's to give a corrupt Ocean and Fisheries Minister the fish finger.",
+    line: "We got 40,000+ New Zealanders to send a corrupt Ocean and Fisheries Minister the fish finger.",
     role: "Activation / protest / earned",
     result: "40,000+ public fingers.",
     color: "#2f7655",
     image: "assets/wwf-1.jpg",
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
-    note: "Public pressure",
+    note: "40,000 fingers sent",
     awards: ["AXIS 2025 3x Bronze", "AWARD Awards 2025 Bronze", "Webby Awards 2025 Honoree", "Cairns Crocodiles 2025 Bronze"],
     media: [
       { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
@@ -58,7 +78,7 @@ const projects = [
     color: "#2f6f9f",
     image: "assets/realestate-1.jpg",
     thumb: "assets/realestate-2.jpg",
-    note: "Rental reasons",
+    note: "Reasons to leave",
     awards: ["Bestads Best Outdoor Winner"],
     media: [
       { type: "image", title: "Outdoor", src: "assets/realestate-seq-01.jpg" },
@@ -77,13 +97,13 @@ const projects = [
     role: "Design / OOH / film",
     result: "Bacteria, but gallery-lit.",
     color: "#94352f",
-    image: "assets/nougly-1.jpg",
+    image: "assets/nougly-video-poster.jpg",
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
     note: "Bacteria art",
     awards: ["AXIS 2025 2x Silver", "AXIS 2025 2x Bronze"],
     media: [
-      { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: false, manual: true, poster: "assets/nougly-1.jpg" },
+      { type: "embed", title: "No Ugly Gut", src: "https://player.vimeo.com/video/1110651390", orientation: "landscape", autoplay: false, manual: true, poster: "assets/nougly-video-poster.jpg" },
       { type: "image", title: "Campaign cover", src: "assets/nougly-seq-01.jpg" },
       { type: "image", title: "OOH blue", src: "assets/nougly-seq-02.jpg" },
       { type: "image", title: "Mockup", src: "assets/nougly-seq-03.jpg" },
@@ -103,7 +123,7 @@ const projects = [
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
     note: "Screen relief",
-    awards: ["AWARD Awards 2022 Bronze", "2x AWARD Awards 2022 Finalist", "Immortal Awards ANZ Finalist", "MAD STARS Finalist", "Caples Finalist", "Campaign Brief The Work Accepted", "Best Ads Interactive Recognition"],
+    awards: ["AWARD Awards 2022 Bronze", "2x AWARD Awards 2022 Finalist", "Immortal Awards ANZ Finalist", "MAD STARS Finalist", "Caples Finalist", "Campaign Brief The Work Accepted", "Best Ads Interactive Winner"],
     media: [
       { type: "embed", title: "Post-it Case Study", src: "https://www.youtube-nocookie.com/embed/fLFetCZcl6I", orientation: "landscape", autoplay: false, manual: true, poster: "assets/postit-1.jpg" },
       { type: "image", title: "Idea board", src: "assets/postit-seq-01.jpg" },
@@ -111,6 +131,31 @@ const projects = [
       { type: "image", title: "Idea board", src: "assets/postit-seq-03.jpg" }
     ],
     watch: "https://youtu.be/fLFetCZcl6I"
+  },
+  {
+    id: "black-heart",
+    client: "Black Heart Rum",
+    title: "The Shanty for Missing Chums",
+    line: "We rewrote a sea shanty to drag flaky mates out of group-chat purgatory and into the night.",
+    role: "Audio / radio / craft",
+    result: "Best Radio, plus AXIS metal.",
+    color: "#7a2e24",
+    image: "assets/black-heart-award-board.jpg",
+    thumb: "assets/black-heart-script-full-song.jpg",
+    note: "Flaky mate bait",
+    awards: ["AXIS 2026 Silver", "AXIS 2026 2x Bronze", "Bestads Best Radio of the Month"],
+    media: [
+      { type: "image", title: "Award board", src: "assets/black-heart-award-board.jpg" },
+      { type: "image", title: "I've got work pirate", src: "assets/black-heart-pirate-work.png" },
+      { type: "audio", title: "I've got work", src: "assets/black-heart-work.mp3", duration: "0:30", lyrics: ["You say, I've got work", "Then abscond like a phantom", "You heart the group chat", "But never answer the anthem"] },
+      { type: "image", title: "It might rain pirate", src: "assets/black-heart-pirate-rain.png" },
+      { type: "audio", title: "It might rain", src: "assets/black-heart-rain.mp3", duration: "0:30", lyrics: ["You say, it might rain", "The sky's just a little grey", "Pack four coats if you need to", "But don't drift away"] },
+      { type: "image", title: "I'm broke pirate", src: "assets/black-heart-pirate-broke.png" },
+      { type: "audio", title: "I'm broke", src: "assets/black-heart-broke.mp3", duration: "0:30", lyrics: ["You say, I'm broke", "Then order through your phone", "If dinner can find you", "So can your mates"] },
+      { type: "image", title: "Full song pirate crew", src: "assets/black-heart-pirate-full-song.png" },
+      { type: "audio", title: "Full song", src: "assets/black-heart-full-song.mp3", duration: "1:30", lyrics: ["Soon may the Black Heart come", "We'll round up every missing chum", "Crack a can and call your name", "The night starts with a rum"] }
+    ],
+    watch: "https://www.bestadsontv.com/best/radio"
   },
   {
     id: "bulla",
@@ -135,6 +180,7 @@ const projects = [
   },
   {
     id: "two-truths",
+    hidden: true,
     client: "TwoTruths",
     title: "No Lies",
     line: "We launched an indie wine maker by preaching universal truths to the public.",
@@ -205,11 +251,26 @@ if ("scrollRestoration" in history) {
 
 const imageSizes = {
   "assets/bulla-seq-01.png": [1800, 1267],
+  "assets/black-heart-award-board.jpg": [1800, 1272],
+  "assets/black-heart-pirate-broke.png": [1448, 1086],
+  "assets/black-heart-pirate-full-song.png": [1448, 1086],
+  "assets/black-heart-pirate-rain.png": [1448, 1086],
+  "assets/black-heart-pirate-work.png": [1448, 1086],
+  "assets/black-heart-script-broke.jpg": [1800, 1272],
+  "assets/black-heart-script-full-song.jpg": [1800, 1272],
+  "assets/black-heart-script-rain.jpg": [1800, 1272],
+  "assets/black-heart-script-work.jpg": [1800, 1272],
+  "assets/hard-rated-helicopter-hero.jpg": [1800, 1172],
+  "assets/hard-rated-human-billboards.jpg": [1800, 1172],
+  "assets/hard-rated-pursuit-support.jpg": [1800, 1272],
+  "assets/hard-rated-welcome-home.jpg": [1800, 1172],
   "assets/nougly-seq-01.jpg": [1800, 1013],
   "assets/nougly-seq-02.jpg": [1800, 1273],
   "assets/nougly-seq-03.jpg": [1800, 1273],
   "assets/nougly-seq-04.jpg": [1800, 2622],
   "assets/nougly-seq-05.jpg": [1800, 1273],
+  "assets/nougly-video-poster.jpg": [1920, 1080],
+  "assets/xlong-video-poster.jpg": [1920, 1080],
   "assets/postit-seq-01.jpg": [1800, 1273],
   "assets/postit-seq-02.jpg": [1800, 1273],
   "assets/postit-seq-03.jpg": [1800, 1273],
@@ -300,7 +361,58 @@ function renderClickTarget(item) {
   return `<button class="video-click-target" type="button" aria-label="Play or pause ${item.title}"></button>`;
 }
 
+function renderLyrics(item, className = "lyric-reveal") {
+  return item.lyrics?.length
+    ? `<ol class="${className}" aria-label="${item.title} lyric highlights">
+        ${item.lyrics.map((line, index) => `<li style="--line: ${index}">${line}</li>`).join("")}
+      </ol>`
+    : "";
+}
+
+function renderRadioPanel(item, options = {}) {
+  const lyrics = options.showLyrics === false ? "" : renderLyrics(item);
+  return `
+    <div class="radio-panel">
+        <div class="radio-head">
+          <figcaption>${item.title}</figcaption>
+          <span>${item.duration || "Audio"}</span>
+        </div>
+        <canvas class="radio-spectrum" width="960" height="240" aria-hidden="true"></canvas>
+        ${lyrics}
+        <div class="radio-controls">
+          <button class="radio-play" type="button" aria-label="Play ${item.title}" data-audio-title="${item.title}">Play</button>
+          <div class="radio-progress" aria-hidden="true"><i></i></div>
+          <span class="radio-time">0:00</span>
+        </div>
+        <audio src="${item.src}" preload="metadata"></audio>
+      </div>
+  `;
+}
+
+function renderTrackPlayer(imageItem, audioItem, project) {
+  const size = imageSizes[imageItem.src];
+  const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
+  const lyrics = renderLyrics(audioItem, "track-lyric-overlay");
+  return `
+    <figure class="track-player radio-frame media-unit" data-radio-frame>
+      <div class="track-cover">
+        <img src="${imageItem.src}" alt="${project.client} - ${imageItem.title}" loading="lazy" decoding="async"${dimensions}>
+        ${lyrics}
+      </div>
+      ${renderRadioPanel(audioItem, { showLyrics: false })}
+    </figure>
+  `;
+}
+
 function renderMediaItem(item, project) {
+  if (item.type === "audio") {
+    return `
+      <figure class="radio-frame media-unit" data-radio-frame>
+        ${renderRadioPanel(item)}
+      </figure>
+    `;
+  }
+
   if (item.type === "image") {
     const size = imageSizes[item.src];
     const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
@@ -311,10 +423,24 @@ function renderMediaItem(item, project) {
     `;
   }
 
+  if (item.type === "videoLink") {
+    const size = imageSizes[item.poster];
+    const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
+    return `
+      <figure class="case-film-link media-unit">
+        <a href="${item.src}" target="_blank" rel="noopener" aria-label="Watch ${item.title}">
+          <img src="${item.poster}" alt="${project.client} - ${item.title}" loading="lazy" decoding="async"${dimensions}>
+          <i aria-hidden="true"></i>
+        </a>
+      </figure>
+    `;
+  }
+
   if (item.type === "video") {
+    const poster = item.poster ? ` poster="${item.poster}"` : "";
     return `
       <figure class="video-frame video-frame--landscape is-playing media-unit">
-        <video src="${item.src}" autoplay muted loop playsinline></video>
+        <video src="${item.src}" autoplay muted loop playsinline${poster}></video>
         ${renderClickTarget(item)}
         ${renderSoundToggle(item)}
         ${renderTimeline(item)}
@@ -337,6 +463,7 @@ function renderMediaSequence(project) {
   const output = [];
   for (let index = 0; index < project.media.length; index += 1) {
     const item = project.media[index];
+    const nextItem = project.media[index + 1];
 
     if (item.orientation === "portrait") {
       const portraitItems = [];
@@ -350,6 +477,12 @@ function renderMediaSequence(project) {
           ${portraitItems.map((portrait) => renderMediaItem(portrait, project)).join("")}
         </div>
       `);
+      continue;
+    }
+
+    if (item.type === "image" && nextItem?.type === "audio") {
+      output.push(renderTrackPlayer(item, nextItem, project));
+      index += 1;
       continue;
     }
 
@@ -373,12 +506,12 @@ function renderAwards(project) {
 function renderProjectGrid() {
   const grid = document.querySelector("#project-grid");
   if (!grid) return;
-  const tilts = [-1.4, 0.8, -0.6, 1.2, -1, 0.5, -0.9, 1.1];
+  const tilts = [-1.4, 0.8, -0.6, 1.2, -1, 0.5, -0.9, 1.1, -0.5, 0.7];
   grid.innerHTML = visibleProjects.map((project, index) => {
     const num = String(index + 1).padStart(2, "0");
     const src = project.thumb || project.image;
     return `
-      <a class="project-card" href="#${project.id}" style='--image: url("${src}"); --tilt: ${tilts[index]}deg'>
+      <a class="project-card" href="#${project.id}" style='--image: url("${src}"); --tilt: ${tilts[index % tilts.length]}deg'>
         <span class="project-chip">${num} / ${project.role}</span>
         <div>
           <h3>${project.client}</h3>
@@ -390,14 +523,15 @@ function renderProjectGrid() {
 }
 
 function renderCases() {
-  const tilts = [-0.4, 0.3, -0.3, 0, -0.3, 0.3, -0.3, 0.4];
+  const tilts = [-0.4, 0.3, -0.3, 0, -0.3, 0.3, -0.3, 0.4, -0.2, 0.2];
+  const total = String(visibleProjects.length).padStart(2, "0");
   cases.innerHTML = visibleProjects.map((project, index) => {
     const num = String(index + 1).padStart(2, "0");
     return `
-      <article class="case" id="${project.id}" data-project="${project.id}" style="--red: ${project.color}; --tilt: ${tilts[index]}deg">
+      <article class="case" id="${project.id}" data-project="${project.id}" style="--red: ${project.color}; --tilt: ${tilts[index % tilts.length]}deg">
         <header class="case-opener">
           <div class="case-kicker">
-            <span>${num} / 08</span>
+            <span>${num} / ${total}</span>
             <span>${project.role}</span>
           </div>
           <div class="case-head">
@@ -587,17 +721,172 @@ function wireVideoControls() {
   tickIframeTimelines();
 }
 
+let radioAudioContext;
+
+function getRadioAudioContext() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return null;
+  if (!radioAudioContext) radioAudioContext = new AudioContextClass();
+  if (radioAudioContext.state === "suspended") radioAudioContext.resume().catch(() => {});
+  return radioAudioContext;
+}
+
+function formatAudioTime(value) {
+  if (!Number.isFinite(value)) return "0:00";
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.floor(value % 60).toString().padStart(2, "0");
+  return `${minutes}:${seconds}`;
+}
+
+function drawRadioSpectrum(frame, animate = false) {
+  const canvas = frame.querySelector(".radio-spectrum");
+  if (!canvas) return;
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const scale = window.devicePixelRatio || 1;
+  const width = Math.max(320, Math.floor(rect.width * scale));
+  const height = Math.max(120, Math.floor(rect.height * scale));
+
+  if (canvas.width !== width || canvas.height !== height) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  const styles = getComputedStyle(frame);
+  const red = styles.getPropertyValue("--red").trim() || "#7a2e24";
+  const analyser = frame.radioAnalyser;
+  const data = frame.radioData;
+  const bars = 56;
+  const gap = Math.max(2, width * 0.004);
+  const barWidth = (width - gap * (bars - 1)) / bars;
+  const baseY = height - 18 * scale;
+  const time = performance.now() / 540;
+
+  context.clearRect(0, 0, width, height);
+  context.fillStyle = "rgba(255, 250, 240, 0.84)";
+  context.fillRect(0, 0, width, height);
+
+  if (analyser && data && animate) analyser.getByteFrequencyData(data);
+
+  for (let index = 0; index < bars; index += 1) {
+    const dataIndex = data ? Math.floor((index / bars) * data.length) : 0;
+    const liveValue = data ? data[dataIndex] / 255 : 0;
+    const idleValue = 0.18 + Math.sin(index * 0.72 + time) * 0.06 + Math.sin(index * 0.24) * 0.06;
+    const value = animate && liveValue ? liveValue : idleValue;
+    const barHeight = Math.max(8 * scale, value * height * 0.78);
+    const x = index * (barWidth + gap);
+    const y = baseY - barHeight;
+
+    context.fillStyle = index % 4 === 0 ? "rgba(50, 29, 25, 0.74)" : red;
+    context.fillRect(x, y, barWidth, barHeight);
+    context.fillStyle = "rgba(50, 29, 25, 0.16)";
+    context.fillRect(x, baseY + 5 * scale, barWidth, 4 * scale);
+  }
+}
+
+function wireRadioPlayers() {
+  const frames = Array.from(document.querySelectorAll("[data-radio-frame]"));
+  if (!frames.length) return;
+
+  const stopOtherPlayers = (currentFrame) => {
+    frames.forEach((frame) => {
+      if (frame === currentFrame) return;
+      frame.querySelector("audio")?.pause();
+    });
+  };
+
+  frames.forEach((frame) => {
+    const audio = frame.querySelector("audio");
+    const button = frame.querySelector(".radio-play");
+    const progress = frame.querySelector(".radio-progress i");
+    const time = frame.querySelector(".radio-time");
+    if (!audio || !button) return;
+
+    drawRadioSpectrum(frame);
+
+    const ensureAnalyser = () => {
+      const context = getRadioAudioContext();
+      if (!context || frame.radioAnalyser) return;
+      const source = context.createMediaElementSource(audio);
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 128;
+      source.connect(analyser);
+      analyser.connect(context.destination);
+      frame.radioAnalyser = analyser;
+      frame.radioData = new Uint8Array(analyser.frequencyBinCount);
+    };
+
+    const animate = () => {
+      const playing = !audio.paused && !audio.ended;
+      drawRadioSpectrum(frame, playing);
+      if (playing) window.requestAnimationFrame(animate);
+    };
+
+    button.addEventListener("click", () => {
+      ensureAnalyser();
+      if (audio.paused) {
+        stopOtherPlayers(frame);
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener("play", () => {
+      const title = button.dataset.audioTitle || "audio";
+      frame.classList.add("is-playing");
+      button.textContent = "Pause";
+      button.setAttribute("aria-label", `Pause ${title}`);
+      animate();
+    });
+
+    audio.addEventListener("pause", () => {
+      const title = button.dataset.audioTitle || "audio";
+      frame.classList.remove("is-playing");
+      button.textContent = "Play";
+      button.setAttribute("aria-label", `Play ${title}`);
+      drawRadioSpectrum(frame);
+    });
+
+    audio.addEventListener("ended", () => {
+      frame.classList.remove("is-playing");
+      button.textContent = "Play";
+      if (progress) progress.style.width = "0%";
+      if (time) time.textContent = "0:00";
+      drawRadioSpectrum(frame);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (audio.duration && progress) {
+        progress.style.width = `${Math.min(100, (audio.currentTime / audio.duration) * 100)}%`;
+      }
+      if (time) time.textContent = formatAudioTime(audio.currentTime);
+    });
+  });
+}
+
 function wireInteractions() {
   const defaultProject = projects[0];
   const defaultRed = getComputedStyle(document.documentElement).getPropertyValue("--red").trim() || defaultProject.color;
+  let activeAccent = defaultProject.color || defaultRed;
+  let hoverAccent = "";
+  const setAccent = (color) => {
+    document.documentElement.style.setProperty("--red", color || defaultRed);
+  };
 
   document.querySelectorAll("[data-project-link]").forEach((link) => {
     link.addEventListener("mouseenter", () => {
       const project = projects.find((item) => item.id === link.dataset.projectLink);
-      if (project) document.documentElement.style.setProperty("--red", project.color);
+      if (project) {
+        hoverAccent = project.color;
+        setAccent(hoverAccent);
+      }
     });
     link.addEventListener("mouseleave", () => {
-      document.documentElement.style.setProperty("--red", defaultRed);
+      hoverAccent = "";
+      setAccent(activeAccent);
     });
   });
 
@@ -609,13 +898,8 @@ function wireInteractions() {
     document.querySelectorAll("[data-section-link]").forEach((link) => {
       link.classList.toggle("is-current", link.dataset.sectionLink === id);
     });
-    if (project) {
-      document.documentElement.style.setProperty("--red", project.color);
-    } else if (id === "awards") {
-      document.documentElement.style.setProperty("--red", defaultRed);
-    } else {
-      document.documentElement.style.setProperty("--red", defaultRed);
-    }
+    activeAccent = project?.color || defaultProject.color || defaultRed;
+    if (!hoverAccent) setAccent(activeAccent);
   };
 
   const trackedSections = Array.from(document.querySelectorAll(".case, #awards"));
@@ -857,12 +1141,16 @@ function wireDogBarks() {
   });
 }
 
-const visibleProjects = projects.filter((p) => !p.hidden);
+const projectOrder = ["hard-rated", "wwf", "x-long-white", "realestate", "black-heart", "no-ugly", "post-it", "bulla"];
+const visibleProjects = projects
+  .filter((p) => !p.hidden)
+  .sort((a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id));
 renderProjectGrid();
 renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
 wireSoundToggles();
 wireVideoControls();
+wireRadioPlayers();
 wireDogBarks();
 wireInteractions();
 
