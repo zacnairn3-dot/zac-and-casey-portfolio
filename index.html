@@ -10,14 +10,15 @@
         history.scrollRestoration = "manual";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=case-studies-23">
+    <link rel="stylesheet" href="styles.css?v=case-studies-50">
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
     <div class="paper-edge" aria-hidden="true"></div>
+    <button class="awards-backdrop" type="button" data-awards-close aria-label="Close Shiny Nonsense"></button>
 
     <nav class="rail" id="site-nav" aria-label="Portfolio">
-      <button class="rail-toggle" type="button" aria-expanded="true" aria-controls="rail-content">
+      <button class="rail-toggle" type="button" aria-expanded="true" aria-controls="rail-content" aria-label="Collapse menu">
         <span>Menu</span>
       </button>
 
@@ -40,7 +41,14 @@
 
         <div class="rail-block rail-block--single">
           <ul class="rail-list rail-list--links">
-            <li><a href="#awards" data-section-link="awards">Shiny Nonsense</a></li>
+            <li>
+              <a href="#awards" data-section-link="awards" aria-label="Shiny Nonsense">
+                <span class="shiny-word" aria-hidden="true">
+                  <span class="shiny-letter" style="--i: 0">S</span><span class="shiny-letter" style="--i: 1">h</span><span class="shiny-letter" style="--i: 2">i</span><span class="shiny-letter" style="--i: 3">n</span><span class="shiny-letter" style="--i: 4">y</span>
+                  <span class="shiny-letter" style="--i: 5">N</span><span class="shiny-letter" style="--i: 6">o</span><span class="shiny-letter" style="--i: 7">n</span><span class="shiny-letter" style="--i: 8">s</span><span class="shiny-letter" style="--i: 9">e</span><span class="shiny-letter" style="--i: 10">n</span><span class="shiny-letter" style="--i: 11">s</span><span class="shiny-letter" style="--i: 12">e</span>
+                </span>
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -87,9 +95,9 @@
 
       <section class="case-studies" id="case-studies" aria-label="Case studies"></section>
 
-      <section class="awards" id="awards" aria-labelledby="awards-title">
+      <section class="awards" id="awards" aria-label="Shiny Nonsense">
         <div class="awards-head">
-          <p class="kicker" id="awards-title">Shiny Nonsense</p>
+          <button class="awards-close" type="button" data-awards-close aria-label="Close Shiny Nonsense">Close</button>
         </div>
 
         <div class="award-board">
@@ -215,6 +223,6 @@
       </footer>
     </main>
 
-    <script src="script.js?v=case-studies-23"></script>
+    <script src="script.js?v=case-studies-50"></script>
   </body>
 </html>

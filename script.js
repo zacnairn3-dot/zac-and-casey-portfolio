@@ -6,18 +6,18 @@ const projects = [
     line: "To launch Hard Rated in New Zealand, we turned one Kiwi in Sydney into a national retrieval mission, then gave him every reason to come home.",
     role: "Launch / activation / PR",
     result: "No.1 selling RTD three weeks after launch.",
-    color: "#e0b400",
+    color: "#f0b400",
     image: "assets/hard-rated-helicopter-hero.jpg",
     thumb: "assets/hard-rated-human-billboards.jpg",
     note: "Stopping the brain drain",
     awards: ["Spikes Asia 2026 Silver", "AXIS 2026 2x Bronze", "AXIS 2026 3x Finalist", "Bestads Best Print Winner"],
     media: [
       { type: "image", title: "Helicopter banner", src: "assets/hard-rated-helicopter-hero.jpg" },
-      { type: "videoLink", title: "The Hard Rated Homecoming case study", src: "https://www.lovethework.com/en/work/campaigns/the-hard-rated-homecoming-1953037", poster: "assets/hard-rated-human-billboards.jpg" },
+      { type: "driveEmbed", title: "The Hard Rated Homecoming case study", src: "https://drive.google.com/file/d/1e62FLS-Fz5XedRqlvaqu2W2VebBKjUFE/preview" },
       { type: "image", title: "Bestads print winner", src: "assets/hard-rated-pursuit-support.jpg" },
       { type: "image", title: "Welcome home", src: "assets/hard-rated-welcome-home.jpg" }
     ],
-    watch: "https://www.lovethework.com/en/work/campaigns/the-hard-rated-homecoming-1953037"
+    watch: "https://drive.google.com/file/d/1e62FLS-Fz5XedRqlvaqu2W2VebBKjUFE/view?usp=sharing"
   },
   {
     id: "x-long-white",
@@ -26,7 +26,7 @@ const projects = [
     line: "We turned the sugar Long White left out of its new RTD, X, into a full-blown mid-90s-style sugar sale, starring our deranged salesman Gary.",
     role: "Launch platform / film / social",
     result: "Gary lived. Sugar moved.",
-    color: "#d92d21",
+    color: "#9a35d4",
     image: "assets/xlong-1.jpg",
     thumb: "assets/xlong-2.jpg",
     intro: "assets/intro-x-long-white.gif",
@@ -51,14 +51,14 @@ const projects = [
     line: "We got 40,000+ New Zealanders to send a corrupt Ocean and Fisheries Minister the fish finger.",
     role: "Activation / protest / earned",
     result: "40,000+ public fingers.",
-    color: "#2f7655",
+    color: "#16865a",
     image: "assets/wwf-1.jpg",
     thumb: "assets/wwf-2.jpg",
     intro: "assets/intro-wwf.gif",
     note: "40,000 fingers sent",
     awards: ["AXIS 2025 3x Bronze", "AWARD Awards 2025 Bronze", "Webby Awards 2025 Honoree", "Cairns Crocodiles 2025 Bronze"],
     media: [
-      { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: true },
+      { type: "embed", title: "WWF The Finger", src: "https://player.vimeo.com/video/1110653590", orientation: "landscape", autoplay: false, manual: true, poster: "assets/wwf-1.jpg" },
       { type: "image", title: "Campaign image", src: "assets/wwf-seq-01.jpg" },
       { type: "image", title: "Campaign screenshot", src: "assets/wwf-seq-02.png" },
       { type: "image", title: "Campaign screenshot", src: "assets/wwf-seq-03.png" },
@@ -75,7 +75,7 @@ const projects = [
     line: "We highlighted all the reasons renters move to show that finding your next rental starts at Realestate.co.nz.",
     role: "OOH / print / platform",
     result: "Renting made painfully legible.",
-    color: "#2f6f9f",
+    color: "#1478c8",
     image: "assets/realestate-1.jpg",
     thumb: "assets/realestate-2.jpg",
     note: "Reasons to leave",
@@ -96,7 +96,7 @@ const projects = [
     line: "We turned probiotic bacteria into works of art for a wellness drink brand called No Ugly Gut.",
     role: "Design / OOH / film",
     result: "Bacteria, but gallery-lit.",
-    color: "#94352f",
+    color: "#d14b3f",
     image: "assets/nougly-video-poster.jpg",
     thumb: "assets/nougly-2.jpg",
     intro: "assets/intro-no-ugly.gif",
@@ -119,7 +119,7 @@ const projects = [
     line: "We made the humble note relevant when the world was glued to screens in COVID lockdown.",
     role: "Film / digital / participation",
     result: "A tiny square got roomy again.",
-    color: "#9b7800",
+    color: "#c68400",
     image: "assets/postit-1.jpg",
     thumb: "assets/postit-2.jpg",
     note: "Screen relief",
@@ -139,7 +139,7 @@ const projects = [
     line: "We rewrote a sea shanty to drag flaky mates out of group-chat purgatory and into the night.",
     role: "Audio / radio / craft",
     result: "Best Radio, plus AXIS metal.",
-    color: "#7a2e24",
+    color: "#7b2140",
     image: "assets/black-heart-award-board.jpg",
     thumb: "assets/black-heart-script-full-song.jpg",
     note: "Flaky mate bait",
@@ -147,13 +147,13 @@ const projects = [
     media: [
       { type: "image", title: "Award board", src: "assets/black-heart-award-board.jpg" },
       { type: "image", title: "I've got work pirate", src: "assets/black-heart-pirate-work.png" },
-      { type: "audio", title: "I've got work", src: "assets/black-heart-work.mp3", duration: "0:30", lyrics: ["You say, I've got work", "Then abscond like a phantom", "You heart the group chat", "But never answer the anthem"] },
+      { type: "audio", title: "I've got work", src: "assets/black-heart-work.mp3", duration: "0:30", lyrics: ["You say, “I’ve got work,” then abscond", "Like we’re all jobless vagabonds", "You heart a meme but nev’r respond", "Still reckon you’re a bro", "Soon may the Black Heart come", "We’ll round up ev’ry missing chum", "Crack a can and call your name", "The night starts with a rum", "Black Heart Rum.", "The call of ye crew since 1842"] },
       { type: "image", title: "It might rain pirate", src: "assets/black-heart-pirate-rain.png" },
-      { type: "audio", title: "It might rain", src: "assets/black-heart-rain.mp3", duration: "0:30", lyrics: ["You say, it might rain", "The sky's just a little grey", "Pack four coats if you need to", "But don't drift away"] },
+      { type: "audio", title: "It might rain", src: "assets/black-heart-rain.mp3", duration: "0:30", lyrics: ["You say, “It might rain,” then you bail", "The sky’s just grey, no wind, no gale", "You’ve got four coats and still you quail", "Like rain could kill a man", "Soon may the Black Heart come", "We’ll round up ev’ry missing chum", "Crack a can and call your name", "The night starts with a rum", "Black Heart Rum.", "The call of ye crew since 1842"] },
       { type: "image", title: "I'm broke pirate", src: "assets/black-heart-pirate-broke.png" },
-      { type: "audio", title: "I'm broke", src: "assets/black-heart-broke.mp3", duration: "0:30", lyrics: ["You say, I'm broke", "Then order through your phone", "If dinner can find you", "So can your mates"] },
+      { type: "audio", title: "I'm broke", src: "assets/black-heart-broke.mp3", duration: "0:30", lyrics: ["You say, “I’m broke,” then stay in", "Order naan and a butter chicken", "Spend forty bucks, for not one grin", "But say a night’s too much", "Soon may the Black Heart come", "We’ll round up ev’ry missing chum", "Crack a can and call your name", "The night starts with a rum", "Black Heart Rum.", "The call of ye crew since 1842"] },
       { type: "image", title: "Full song pirate crew", src: "assets/black-heart-pirate-full-song.png" },
-      { type: "audio", title: "Full song", src: "assets/black-heart-full-song.mp3", duration: "1:30", lyrics: ["Soon may the Black Heart come", "We'll round up every missing chum", "Crack a can and call your name", "The night starts with a rum"] }
+      { type: "audio", title: "Soon may the Black Heart come", src: "assets/black-heart-full-song.mp3", duration: "1:30", lyrics: ["You say, “I’ve got work,” then abscond", "Like we’re all jobless vagabonds", "You heart a meme but nev’r respond", "Still reckon you’re a bro", "Soon may the Black Heart come", "We’ll round up ev’ry missing chum", "Crack a can and call your name", "The night starts with a rum", "You say, “It might rain,” then you bail", "The sky’s just grey, no wind, no gale", "You’ve got four coats and still you quail", "Like rain could kill a man", "You say, “I’m broke,” then stay in", "Order naan and a butter chicken", "Spend forty bucks, for not one grin", "But say a night’s too much", "We’ve drunk without you night by night", "We’ve sent the memes, we’ve kept it light", "But friendship’s not without a fight", "So get your arse out, mate", "Black Heart in hand, we ring the bell", "Still in ya trackies, look like hell", "You raise the can and laugh as well", "The crew is back as one", "(x2)", "Soon may the Black Heart come", "We’ll round up ev’ry missing chum", "Crack a can and call your name", "The night starts with a rum", "Black Heart Rum.", "The call of ye crew since 1842"] }
     ],
     watch: "https://www.bestadsontv.com/best/radio"
   },
@@ -164,7 +164,7 @@ const projects = [
     line: "We created a lovable, cringeworthy cottage cheese influencer for Australia's most beloved dairy company. She blew up on the TikToks, as my grandpa would say. People loved her so much that she made it on The Gruen Transfer, B&T awarded it Best Digital Campaign and she even picked up some real earned media for selling too much cottage cheese.",
     role: "Character / social / earned",
     result: "TikTok heat and Gruen airtime.",
-    color: "#4f86a6",
+    color: "#2f91b9",
     image: "assets/bulla-1.jpg",
     thumb: "assets/bulla-2.png",
     note: "Cottage chief",
@@ -186,7 +186,7 @@ const projects = [
     line: "We launched an indie wine maker by preaching universal truths to the public.",
     role: "Brand / OOH / copy",
     result: "Wine with a backbone.",
-    color: "#70425f",
+    color: "#8a4f7a",
     image: "assets/twotruths-1.jpg",
     thumb: "assets/twotruths-2.jpg",
     note: "Plain truths",
@@ -206,7 +206,7 @@ const projects = [
     line: "We won the Global Young Lions Digital Competition in 2023. Good luck reading through all of it.",
     role: "Digital / pitch / competition",
     result: "Global Gold.",
-    color: "#b65a2d",
+    color: "#c75f2f",
     image: "assets/young-1.jpg",
     thumb: "assets/young-2.jpg",
     note: "Global gold",
@@ -323,9 +323,9 @@ function withAutoplay(src, autoplay) {
   const separator = src.includes("?") ? "&" : "?";
   if (!autoplay) {
     if (src.includes("youtube")) {
-      return `${src}${separator}autoplay=0&mute=1&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`;
+      return `${src}${separator}autoplay=0&mute=0&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`;
     }
-    return `${src}${separator}autoplay=0&muted=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+    return `${src}${separator}autoplay=0&muted=0&autopause=0&playsinline=1&title=0&byline=0&portrait=0&controls=1&dnt=1`;
   }
   if (src.includes("youtube")) {
     const id = src.split("/").pop();
@@ -344,7 +344,8 @@ function shouldRenderSoundToggle(item) {
 
 function renderSoundToggle(item) {
   if (!shouldRenderSoundToggle(item)) return "";
-  return `<button class="sound-toggle" type="button" aria-label="${soundToggleLabel(item)}" aria-pressed="false">Unmute</button>`;
+  const soundEnabled = !(item.autoplay || item.type === "video");
+  return `<button class="sound-toggle" type="button" aria-label="${soundToggleLabel(item)}" aria-pressed="${soundEnabled ? "true" : "false"}">${soundEnabled ? "Mute" : "Unmute"}</button>`;
 }
 
 function renderTimeline(item) {
@@ -363,7 +364,7 @@ function renderClickTarget(item) {
 
 function renderLyrics(item, className = "lyric-reveal") {
   return item.lyrics?.length
-    ? `<ol class="${className}" aria-label="${item.title} lyric highlights">
+    ? `<ol class="${className}" aria-label="${item.title} lyrics">
         ${item.lyrics.map((line, index) => `<li style="--line: ${index}">${line}</li>`).join("")}
       </ol>`
     : "";
@@ -371,8 +372,9 @@ function renderLyrics(item, className = "lyric-reveal") {
 
 function renderRadioPanel(item, options = {}) {
   const lyrics = options.showLyrics === false ? "" : renderLyrics(item);
+  const frameAttribute = options.panelFrame ? " data-radio-frame" : "";
   return `
-    <div class="radio-panel">
+    <div class="radio-panel"${frameAttribute}>
         <div class="radio-head">
           <figcaption>${item.title}</figcaption>
           <span>${item.duration || "Audio"}</span>
@@ -389,17 +391,51 @@ function renderRadioPanel(item, options = {}) {
   `;
 }
 
+function renderTrackDeck(tracks, project) {
+  if (!tracks.length) return "";
+  return `
+    <figure class="track-deck radio-frame media-unit" data-track-deck>
+      <div class="track-deck-copy">
+        <span>Radio</span>
+      </div>
+      <div class="track-stage">
+        ${tracks.map(({ imageItem, audioItem }, index) => {
+          const size = imageSizes[imageItem.src];
+          const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
+          return `
+            <div class="track-pane${index === 0 ? " is-active" : ""}" data-track-pane="${index}">
+              <div class="track-cover">
+                <img src="${imageItem.src}" alt="${project.client} - ${imageItem.title}" loading="lazy" decoding="async"${dimensions}>
+              </div>
+              ${renderRadioPanel(audioItem, { panelFrame: true })}
+            </div>
+          `;
+        }).join("")}
+      </div>
+      <div class="track-options" role="list" aria-label="${project.client} radio tracks">
+        ${tracks.map(({ audioItem }, index) => `
+          <button class="track-option${index === 0 ? " is-active" : ""}" type="button" data-track-index="${index}" aria-pressed="${index === 0 ? "true" : "false"}" aria-label="Play ${audioItem.title}">
+            <i aria-hidden="true"></i>
+            <span>
+              <b>${audioItem.title}</b>
+              <small>${audioItem.duration || "Audio"}</small>
+            </span>
+          </button>
+        `).join("")}
+      </div>
+    </figure>
+  `;
+}
+
 function renderTrackPlayer(imageItem, audioItem, project) {
   const size = imageSizes[imageItem.src];
   const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
-  const lyrics = renderLyrics(audioItem, "track-lyric-overlay");
   return `
     <figure class="track-player radio-frame media-unit" data-radio-frame>
       <div class="track-cover">
         <img src="${imageItem.src}" alt="${project.client} - ${imageItem.title}" loading="lazy" decoding="async"${dimensions}>
-        ${lyrics}
       </div>
-      ${renderRadioPanel(audioItem, { showLyrics: false })}
+      ${renderRadioPanel(audioItem)}
     </figure>
   `;
 }
@@ -448,18 +484,44 @@ function renderMediaItem(item, project) {
     `;
   }
 
+  if (item.type === "driveEmbed") {
+    return `
+      <figure class="video-frame video-frame--landscape video-frame--drive media-unit">
+        <iframe src="${item.src}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </figure>
+    `;
+  }
+
   return `
     <figure class="video-frame video-frame--${item.orientation || "landscape"}${item.manual ? " video-frame--manual" : ""}${item.autoplay ? " is-playing" : ""} media-unit"${item.poster ? ` style='--poster: url("${item.poster}")'` : ""}>
       <iframe src="${withAutoplay(item.src, item.autoplay)}" title="${item.title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       ${renderClickTarget(item)}
       ${renderPlayButton(item)}
       ${renderSoundToggle(item)}
-      ${renderTimeline(item)}
     </figure>
   `;
 }
 
 function renderMediaSequence(project) {
+  if (project.id === "black-heart") {
+    const output = [];
+    const tracks = [];
+    for (let index = 0; index < project.media.length; index += 1) {
+      const item = project.media[index];
+      const nextItem = project.media[index + 1];
+
+      if (item.type === "image" && nextItem?.type === "audio") {
+        tracks.push({ imageItem: item, audioItem: nextItem });
+        index += 1;
+        continue;
+      }
+
+      output.push(renderMediaItem(item, project));
+    }
+    if (tracks.length) output.push(renderTrackDeck(tracks, project));
+    return output.join("");
+  }
+
   const output = [];
   for (let index = 0; index < project.media.length; index += 1) {
     const item = project.media[index];
@@ -554,38 +616,45 @@ function renderCases() {
 }
 
 function wireSoundToggles() {
+  const setFrameSound = (frame, enableSound) => {
+    const button = frame?.querySelector(".sound-toggle");
+    if (button) {
+      button.setAttribute("aria-pressed", String(enableSound));
+      button.textContent = enableSound ? "Mute" : "Unmute";
+    }
+
+    const video = frame?.querySelector("video");
+    if (video) {
+      video.muted = !enableSound;
+      video.volume = enableSound ? 1 : 0;
+      return;
+    }
+
+    const iframe = frame?.querySelector("iframe");
+    if (!iframe?.contentWindow) return;
+    const source = iframe.getAttribute("src") || "";
+    if (source.includes("youtube")) {
+      const command = enableSound ? "unMute" : "mute";
+      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: command, args: [] }), "*");
+      return;
+    }
+    iframe.contentWindow.postMessage(JSON.stringify({ method: "setMuted", value: !enableSound }), "*");
+    iframe.contentWindow.postMessage(JSON.stringify({ method: "setVolume", value: enableSound ? 1 : 0 }), "*");
+  };
+
+  window.setVideoFrameSound = setFrameSound;
+
   document.querySelectorAll(".sound-toggle").forEach((button) => {
     button.addEventListener("click", () => {
       const frame = button.closest(".video-frame");
       const enableSound = button.getAttribute("aria-pressed") !== "true";
-      button.setAttribute("aria-pressed", String(enableSound));
-      button.textContent = enableSound ? "Mute" : "Unmute";
-
-      const video = frame?.querySelector("video");
-      if (video) {
-        video.muted = !enableSound;
-        video.volume = enableSound ? 1 : 0;
-        if (enableSound) video.play().catch(() => {});
-        return;
-      }
-
-      const iframe = frame?.querySelector("iframe");
-      if (!iframe?.contentWindow) return;
-      const source = iframe.getAttribute("src") || "";
-      if (source.includes("youtube")) {
-        const command = enableSound ? "unMute" : "mute";
-        iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: command, args: [] }), "*");
-        return;
-      }
-      iframe.contentWindow.postMessage(JSON.stringify({ method: "setMuted", value: !enableSound }), "*");
-      iframe.contentWindow.postMessage(JSON.stringify({ method: "setVolume", value: enableSound ? 1 : 0 }), "*");
+      setFrameSound(frame, enableSound);
+      if (enableSound) frame?.querySelector("video")?.play().catch(() => {});
     });
   });
 }
 
 function wireVideoControls() {
-  const estimatedDurations = new WeakMap();
-
   const updateTimeline = (frame, progress) => {
     frame.style.setProperty("--video-progress", `${Math.max(0, Math.min(100, progress))}%`);
   };
@@ -595,16 +664,16 @@ function wireVideoControls() {
     iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: command === "play" ? "playVideo" : "pauseVideo", args: [] }), "*");
   };
 
-  const getEmbedTime = (frame) => {
-    const duration = estimatedDurations.get(frame) || 60;
-    if (frame.dataset.pausedAt) return Number(frame.dataset.pausedAt);
-    const start = Number(frame.dataset.timelineStart || performance.now());
-    return ((performance.now() - start) / 1000) % duration;
+  const isFrameAudible = (frame) => {
+    const soundButton = frame.querySelector(".sound-toggle");
+    if (soundButton) return soundButton.getAttribute("aria-pressed") === "true";
+    return frame.classList.contains("video-frame--manual") && frame.classList.contains("is-playing");
   };
 
   const playFrame = (frame) => {
     const video = frame.querySelector("video");
     if (video) {
+      window.setVideoFrameSound?.(frame, true);
       video.play().catch(() => {});
       frame.classList.add("is-playing");
       return;
@@ -612,10 +681,8 @@ function wireVideoControls() {
 
     const iframe = frame.querySelector("iframe");
     if (!iframe?.contentWindow) return;
-    const pausedAt = Number(frame.dataset.pausedAt || 0);
     frame.classList.add("is-playing");
-    frame.dataset.timelineStart = String(performance.now() - pausedAt * 1000);
-    delete frame.dataset.pausedAt;
+    window.setVideoFrameSound?.(frame, true);
     iframeCommand(iframe, "play");
   };
 
@@ -629,8 +696,6 @@ function wireVideoControls() {
 
     const iframe = frame.querySelector("iframe");
     if (!iframe?.contentWindow) return;
-    const pausedAt = getEmbedTime(frame);
-    frame.dataset.pausedAt = String(pausedAt);
     frame.classList.remove("is-playing");
     iframeCommand(iframe, "pause");
   };
@@ -655,16 +720,6 @@ function wireVideoControls() {
       return;
     }
 
-    const iframe = frame.querySelector("iframe");
-    if (!iframe?.contentWindow) return;
-    const duration = estimatedDurations.get(frame) || 60;
-    const time = Math.max(0, Math.min(duration, ratio * duration));
-    frame.dataset.timelineStart = String(performance.now() - time * 1000);
-    delete frame.dataset.pausedAt;
-    frame.classList.add("is-playing");
-    iframe.contentWindow.postMessage(JSON.stringify({ method: "setCurrentTime", value: time }), "*");
-    iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "seekTo", args: [time, true] }), "*");
-    iframeCommand(iframe, "play");
     updateTimeline(frame, ratio * 100);
   };
 
@@ -685,12 +740,7 @@ function wireVideoControls() {
       return;
     }
 
-    const iframe = frame.querySelector("iframe");
-    if (!iframe) return;
-    estimatedDurations.set(frame, frame.classList.contains("video-frame--portrait") ? 22 : 60);
-    if (frame.classList.contains("is-playing") && !frame.dataset.timelineStart) {
-      frame.dataset.timelineStart = String(performance.now());
-    }
+    if (frame.classList.contains("is-playing")) window.setVideoFrameSound?.(frame, false);
   });
 
   document.querySelectorAll(".video-click-target").forEach((button) => {
@@ -707,18 +757,21 @@ function wireVideoControls() {
     });
   });
 
-  const tickIframeTimelines = () => {
-    document.querySelectorAll(".video-frame.is-playing iframe").forEach((iframe) => {
-      const frame = iframe.closest(".video-frame");
-      if (!frame) return;
-      const duration = estimatedDurations.get(frame) || 60;
-      const start = Number(frame.dataset.timelineStart || performance.now());
-      const elapsed = ((performance.now() - start) / 1000) % duration;
-      updateTimeline(frame, (elapsed / duration) * 100);
+  if ("IntersectionObserver" in window) {
+    const pauseAudibleObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const frame = entry.target;
+        if (entry.isIntersecting || !frame.classList.contains("is-playing")) return;
+        if (isFrameAudible(frame)) pauseFrame(frame);
+      });
+    }, {
+      rootMargin: "-18% 0px -18% 0px",
+      threshold: 0.02
     });
-    window.requestAnimationFrame(tickIframeTimelines);
-  };
-  tickIframeTimelines();
+
+    document.querySelectorAll(".video-frame").forEach((frame) => pauseAudibleObserver.observe(frame));
+  }
+
 }
 
 let radioAudioContext;
@@ -755,7 +808,7 @@ function drawRadioSpectrum(frame, animate = false) {
   }
 
   const styles = getComputedStyle(frame);
-  const red = styles.getPropertyValue("--red").trim() || "#7a2e24";
+  const red = styles.getPropertyValue("--red").trim() || "#7b2140";
   const analyser = frame.radioAnalyser;
   const data = frame.radioData;
   const bars = 56;
@@ -784,6 +837,37 @@ function drawRadioSpectrum(frame, animate = false) {
     context.fillStyle = "rgba(50, 29, 25, 0.16)";
     context.fillRect(x, baseY + 5 * scale, barWidth, 4 * scale);
   }
+}
+
+function wireTrackDecks() {
+  document.querySelectorAll("[data-track-deck]").forEach((deck) => {
+    const options = Array.from(deck.querySelectorAll("[data-track-index]"));
+    const panes = Array.from(deck.querySelectorAll("[data-track-pane]"));
+    if (!options.length || !panes.length) return;
+
+    const setActiveTrack = (activeIndex) => {
+      options.forEach((button, index) => {
+        const isActive = index === activeIndex;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      panes.forEach((pane, index) => {
+        const isActive = index === activeIndex;
+        pane.classList.toggle("is-active", isActive);
+        if (!isActive) pane.querySelector("audio")?.pause();
+      });
+
+      return panes[activeIndex];
+    };
+
+    options.forEach((button) => {
+      button.addEventListener("click", () => {
+        const pane = setActiveTrack(Number(button.dataset.trackIndex || 0));
+        pane?.querySelector(".radio-play")?.click();
+      });
+    });
+  });
 }
 
 function wireRadioPlayers() {
@@ -836,7 +920,12 @@ function wireRadioPlayers() {
 
     audio.addEventListener("play", () => {
       const title = button.dataset.audioTitle || "audio";
+      const pane = frame.closest("[data-track-pane]");
+      const deck = frame.closest("[data-track-deck]");
       frame.classList.add("is-playing");
+      deck?.querySelectorAll("[data-track-index]").forEach((option) => {
+        option.classList.toggle("is-playing", option.dataset.trackIndex === pane?.dataset.trackPane);
+      });
       button.textContent = "Pause";
       button.setAttribute("aria-label", `Pause ${title}`);
       animate();
@@ -845,6 +934,9 @@ function wireRadioPlayers() {
     audio.addEventListener("pause", () => {
       const title = button.dataset.audioTitle || "audio";
       frame.classList.remove("is-playing");
+      frame.closest("[data-track-deck]")?.querySelectorAll("[data-track-index]").forEach((option) => {
+        option.classList.remove("is-playing");
+      });
       button.textContent = "Play";
       button.setAttribute("aria-label", `Play ${title}`);
       drawRadioSpectrum(frame);
@@ -870,24 +962,14 @@ function wireRadioPlayers() {
 function wireInteractions() {
   const defaultProject = projects[0];
   const defaultRed = getComputedStyle(document.documentElement).getPropertyValue("--red").trim() || defaultProject.color;
-  let activeAccent = defaultProject.color || defaultRed;
-  let hoverAccent = "";
+  let activeAccent = defaultRed;
   const setAccent = (color) => {
     document.documentElement.style.setProperty("--red", color || defaultRed);
   };
 
   document.querySelectorAll("[data-project-link]").forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-      const project = projects.find((item) => item.id === link.dataset.projectLink);
-      if (project) {
-        hoverAccent = project.color;
-        setAccent(hoverAccent);
-      }
-    });
-    link.addEventListener("mouseleave", () => {
-      hoverAccent = "";
-      setAccent(activeAccent);
-    });
+    const project = projects.find((item) => item.id === link.dataset.projectLink);
+    if (project?.color) link.style.setProperty("--project-color", project.color);
   });
 
   const setActiveSection = (id) => {
@@ -898,11 +980,11 @@ function wireInteractions() {
     document.querySelectorAll("[data-section-link]").forEach((link) => {
       link.classList.toggle("is-current", link.dataset.sectionLink === id);
     });
-    activeAccent = project?.color || defaultProject.color || defaultRed;
-    if (!hoverAccent) setAccent(activeAccent);
+    activeAccent = project?.color || defaultRed;
+    setAccent(activeAccent);
   };
 
-  const trackedSections = Array.from(document.querySelectorAll(".case, #awards"));
+  const trackedSections = Array.from(document.querySelectorAll(".case"));
   let activeTicking = false;
   const updateActiveFromScroll = () => {
     const marker = window.innerHeight * 0.68;
@@ -916,11 +998,6 @@ function wireInteractions() {
         activeId = section.id;
       }
     });
-
-    if (!activeId) {
-      const firstVisible = trackedSections.find((section) => section.getBoundingClientRect().bottom > 80);
-      activeId = firstVisible ? firstVisible.id : null;
-    }
 
     setActiveSection(activeId);
     activeTicking = false;
@@ -948,10 +1025,72 @@ function wireInteractions() {
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
   const railToggle = document.querySelector(".rail-toggle");
+  const mobileRailQuery = window.matchMedia("(max-width: 760px)");
+  const setRailExpanded = (expanded) => {
+    document.body.classList.toggle("rail-collapsed", !expanded);
+    if (railToggle) {
+      railToggle.setAttribute("aria-expanded", String(expanded));
+      railToggle.setAttribute("aria-label", expanded ? "Collapse menu" : "Open menu");
+    }
+  };
+  const syncRailForViewport = () => {
+    setRailExpanded(!mobileRailQuery.matches);
+  };
+
+  syncRailForViewport();
+  if (mobileRailQuery.addEventListener) {
+    mobileRailQuery.addEventListener("change", syncRailForViewport);
+  } else if (mobileRailQuery.addListener) {
+    mobileRailQuery.addListener(syncRailForViewport);
+  }
+
   railToggle?.addEventListener("click", () => {
-    const collapsed = document.body.classList.toggle("rail-collapsed");
-    railToggle.setAttribute("aria-expanded", String(!collapsed));
+    setRailExpanded(document.body.classList.contains("rail-collapsed"));
   });
+
+  document.querySelectorAll(".rail a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileRailQuery.matches) setRailExpanded(false);
+    });
+  });
+
+  const awardsPanel = document.querySelector("#awards");
+  const setAwardsOpen = (open) => {
+    if (!awardsPanel) return;
+    awardsPanel.classList.toggle("is-open", open);
+    document.body.classList.toggle("awards-open", open);
+    document.querySelectorAll("[data-section-link='awards']").forEach((link) => {
+      link.classList.toggle("is-current", open);
+    });
+    if (open) {
+      awardsPanel.querySelector("[data-awards-close]")?.focus({ preventScroll: true });
+    }
+  };
+  window.setAwardsOpen = setAwardsOpen;
+
+  document.querySelectorAll("[data-section-link='awards']").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      setAwardsOpen(true);
+      if (mobileRailQuery.matches) setRailExpanded(false);
+      if (window.location.hash !== "#awards") history.pushState(null, "", "#awards");
+    });
+  });
+
+  document.querySelectorAll("[data-awards-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setAwardsOpen(false);
+      if (window.location.hash === "#awards") history.pushState(null, "", window.location.pathname + window.location.search);
+    });
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setAwardsOpen(false);
+  });
+
+  if (window.location.hash === "#awards") {
+    requestAnimationFrame(() => setAwardsOpen(true));
+  }
 }
 
 let dogAudioContext;
@@ -1150,12 +1289,14 @@ renderCases();
 document.querySelectorAll(".case-opener, .case-media").forEach((el) => el.classList.add("reveal"));
 wireSoundToggles();
 wireVideoControls();
+wireTrackDecks();
 wireRadioPlayers();
 wireDogBarks();
 wireInteractions();
 
 function scrollToHash(hash = window.location.hash) {
   if (!hash || hash.length < 2) return;
+  if (hash === "#awards") return;
   const el = document.getElementById(hash.slice(1));
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.pageYOffset;
@@ -1187,7 +1328,10 @@ if (window.location.hash) {
   requestAnimationFrame(() => scheduleHashRestore());
 }
 
-window.addEventListener("hashchange", () => scheduleHashRestore());
+window.addEventListener("hashchange", () => {
+  window.setAwardsOpen?.(window.location.hash === "#awards");
+  scheduleHashRestore();
+});
 window.addEventListener("load", () => {
   if (window.location.hash) scheduleHashRestore();
 });
